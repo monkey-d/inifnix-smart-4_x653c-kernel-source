@@ -32,7 +32,7 @@
 #include <linux/anon_inodes.h>
 #include <linux/version.h>
 #include <linux/uaccess.h>
-#include <mali_kbase_sync.h>
+#include "mali_kbase_sync.h"
 
 static int kbase_stream_close(struct inode *inode, struct file *file)
 {

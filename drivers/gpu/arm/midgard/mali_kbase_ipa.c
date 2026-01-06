@@ -17,7 +17,7 @@
 #include <linux/of.h>
 #include <linux/sysfs.h>
 
-#include <mali_kbase.h>
+#include "mali_kbase.h"
 
 #define NR_IPA_GROUPS 8
 
@@ -36,7 +36,7 @@ struct ipa_group {
 			struct ipa_group *);
 };
 
-#include <mali_kbase_ipa_tables.h>
+#include "mali_kbase_ipa_tables.h"
 
 /**
  * struct kbase_ipa_context - IPA context per device

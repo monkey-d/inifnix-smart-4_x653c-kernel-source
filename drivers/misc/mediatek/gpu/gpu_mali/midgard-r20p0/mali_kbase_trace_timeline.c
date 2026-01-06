@@ -16,9 +16,9 @@
 
 
 
-#include <mali_kbase.h>
-#include <mali_kbase_jm.h>
-#include <mali_kbase_hwaccess_jm.h>
+#include "mali_kbase.h"
+#include "mali_kbase_jm.h"
+#include "mali_kbase_hwaccess_jm.h"
 
 #define CREATE_TRACE_POINTS
 

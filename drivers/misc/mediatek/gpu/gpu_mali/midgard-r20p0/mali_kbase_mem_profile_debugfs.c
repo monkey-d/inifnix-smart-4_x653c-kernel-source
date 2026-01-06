@@ -14,7 +14,7 @@
 
 
 
-#include <mali_kbase.h>
+#include "mali_kbase.h"
 
 #ifdef CONFIG_DEBUG_FS
 

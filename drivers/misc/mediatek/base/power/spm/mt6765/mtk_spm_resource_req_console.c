@@ -14,7 +14,7 @@
 #include <linux/kernel.h>
 #include <linux/mutex.h>
 #include <mtk_idle.h>
-#include <mtk_spm_internal.h>
+#include "mtk_spm_internal.h"
 #include <mtk_spm_resource_req_internal.h>
 
 

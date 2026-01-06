@@ -23,4 +23,6 @@ ccflags-y += -I$(srctree)/drivers/misc/mediatek/smi/
 ccflags-y += -I$(srctree)/drivers/misc/mediatek/include/mt-plat
 ccflags-y += -I$(srctree)/drivers/misc/mediatek/m4u/2.0
 
+ccflags-y += -I$(src)
+
 obj-$(CONFIG_MTK_M4U) += m4u_hw.o

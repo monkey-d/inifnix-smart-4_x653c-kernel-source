@@ -16,8 +16,8 @@
 
 #ifdef CONFIG_ARM64
 
-#include <mali_kbase.h>
-#include <mali_kbase_smc.h>
+#include "mali_kbase.h"
+#include "mali_kbase_smc.h"
 
 #include <linux/compiler.h>
 

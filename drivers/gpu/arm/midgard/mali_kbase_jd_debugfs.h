@@ -25,7 +25,7 @@
 
 #include <linux/debugfs.h>
 
-#include <mali_kbase.h>
+#include "mali_kbase.h"
 
 #define MALI_JD_DEBUGFS_VERSION 1
 

@@ -20,10 +20,10 @@
  */
 
 #include <linux/dma-mapping.h>
-#include <mali_kbase_config.h>
-#include <mali_kbase.h>
-#include <mali_kbase_mem.h>
-#include <mali_kbase_mem_linux.h>
+#include "mali_kbase_config.h"
+#include "mali_kbase.h"
+#include "mali_kbase_mem.h"
+#include "mali_kbase_mem_linux.h"
 
 #define JOB_NOT_STARTED 0
 #define JOB_TYPE_NULL      (1)

@@ -15,7 +15,7 @@
 
 
 
-#include <mali_kbase.h>
+#include "mali_kbase.h"
 
 #ifdef CONFIG_DEBUG_FS
 /** Show callback for the @c gpu_memory debugfs file.

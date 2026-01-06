@@ -11,7 +11,7 @@
  * GNU General Public License for more details.
  */
 
-#include <adsp_ipi_queue.h>
+#include "adsp_ipi_queue.h"
 
 #include <linux/types.h>
 #include <linux/errno.h>
@@ -26,7 +26,7 @@
 #include <linux/jiffies.h>
 
 
-#include <audio_ipi_platform.h>
+#include "audio_ipi_platform.h"
 
 #ifdef CONFIG_MTK_AUDIODSP_SUPPORT
 #include <adsp_ipi.h>

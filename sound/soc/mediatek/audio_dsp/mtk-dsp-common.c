@@ -14,9 +14,9 @@
 #include <mtk-base-afe.h>
 
 #if defined(CONFIG_SND_SOC_MTK_AUDIO_DSP)
-#include <mtk-dsp-mem-control.h>
-#include <mtk-base-dsp.h>
-#include <mtk-dsp-common.h>
+#include "mtk-dsp-mem-control.h"
+#include "mtk-base-dsp.h"
+#include "mtk-dsp-common.h"
 #endif
 
 #ifdef CONFIG_MTK_AUDIODSP_SUPPORT

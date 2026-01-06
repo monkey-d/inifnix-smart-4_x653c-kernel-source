@@ -27,7 +27,17 @@ enum LCM_DSI_MODE_CON lcm_dsi_mode;
 #define LCD_HW_ID_STATUS_FLOAT 0x02
 #define LCD_HW_ID_STATUS_ERROR  0x03
 
+// Manually added for x653c
+extern struct LCM_DRIVER nt36525b_hdp_dsi_vdo_tm_tm_x653c_lcm_drv;
+extern struct LCM_DRIVER nt36525b_hdp_dsi_vdo_txd_mt_x653c_lcm_drv;
+
 struct LCM_DRIVER *lcm_driver_list[] = {
+
+#if defined(CONFIG_CUSTOM_KERNEL_LCM)
+    &nt36525b_hdp_dsi_vdo_tm_tm_x653c_lcm_drv,
+    &nt36525b_hdp_dsi_vdo_txd_mt_x653c_lcm_drv,
+#endif
+
 #if defined(OTM1284A_HD720_DSI_VDO_TM)
 	&otm1284a_hd720_dsi_vdo_tm_lcm_drv,
 #endif

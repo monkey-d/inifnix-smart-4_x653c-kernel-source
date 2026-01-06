@@ -21,9 +21,9 @@
  * Job Scheduler: Completely Fair Policy Implementation
  */
 
-#include <mali_kbase.h>
-#include <mali_kbase_js.h>
-#include <mali_kbase_js_policy_cfs.h>
+#include "mali_kbase.h"
+#include "mali_kbase_js.h"
+#include "mali_kbase_js_policy_cfs.h"
 #include <linux/version.h>
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 9, 0)
 #include <linux/sched/rt.h>

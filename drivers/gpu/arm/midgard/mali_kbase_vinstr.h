@@ -18,8 +18,8 @@
 #ifndef _KBASE_VINSTR_H_
 #define _KBASE_VINSTR_H_
 
-#include <mali_kbase.h>
-#include <mali_kbase_hwcnt_reader.h>
+#include "mali_kbase.h"
+#include "mali_kbase_hwcnt_reader.h"
 
 /*****************************************************************************/
 

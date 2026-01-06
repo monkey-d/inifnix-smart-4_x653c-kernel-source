@@ -26,12 +26,12 @@
 #include <linux/slab.h>
 #include <linux/wait.h>
 
-#include <mali_kbase.h>
-#include <mali_kbase_hwaccess_instr.h>
-#include <mali_kbase_hwaccess_jm.h>
-#include <mali_kbase_hwcnt_reader.h>
-#include <mali_kbase_mem_linux.h>
-#include <mali_kbase_tlstream.h>
+#include "mali_kbase.h"
+#include "mali_kbase_hwaccess_instr.h"
+#include "mali_kbase_hwaccess_jm.h"
+#include "mali_kbase_hwcnt_reader.h"
+#include "mali_kbase_mem_linux.h"
+#include "mali_kbase_tlstream.h"
 
 /*****************************************************************************/
 

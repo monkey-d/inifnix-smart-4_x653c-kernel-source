@@ -269,7 +269,7 @@ TRACE_EVENT(ccci_skb_rx,
  * I could specify a path from the define_trace.h file back to this
  * file.
  *
- * #define TRACE_INCLUDE_PATH ../../samples/trace_events
+ * #define TRACE_INCLUDE_PATH ../../drivers/misc/mediatek/eccci/hif./../samples/trace_events
  *
  * But the safest and easiest way to simply make it use the directory
  * that the file is in is to add in the Makefile:
@@ -285,7 +285,7 @@ TRACE_EVENT(ccci_skb_rx,
  *
  * And then let the path to this directory be the TRACE_INCLUDE_PATH:
  *
- * #define TRACE_INCLUDE_PATH samples/trace_events
+ * #define TRACE_INCLUDE_PATH ../../drivers/misc/mediatek/eccci/hifamples/trace_events
  *
  * But then if something defines "samples" or "trace_events" as a macro
  * then we could risk that being converted too, and give us an unexpected
@@ -293,7 +293,7 @@ TRACE_EVENT(ccci_skb_rx,
  */
 #undef TRACE_INCLUDE_PATH
 #undef TRACE_INCLUDE_FILE
-#define TRACE_INCLUDE_PATH .
+#define TRACE_INCLUDE_PATH ../../drivers/misc/mediatek/eccci/hif
 /*
  * TRACE_INCLUDE_FILE is not needed if the filename and TRACE_SYSTEM are equal
  */

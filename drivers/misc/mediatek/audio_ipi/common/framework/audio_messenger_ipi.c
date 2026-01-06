@@ -23,7 +23,7 @@
 #include <adsp_ipi.h>
 #endif
 
-#include <adsp_ipi_queue.h>
+#include "adsp_ipi_queue.h"
 
 #include "audio_log.h"
 #include "audio_assert.h"

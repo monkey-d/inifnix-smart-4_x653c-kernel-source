@@ -39,10 +39,10 @@
 #include <linux/shrinker.h>
 #include <linux/cache.h>
 
-#include <mali_kbase.h>
-#include <mali_kbase_mem_linux.h>
-#include <mali_kbase_config_defaults.h>
-#include <mali_kbase_tlstream.h>
+#include "mali_kbase.h"
+#include "mali_kbase_mem_linux.h"
+#include "mali_kbase_config_defaults.h"
+#include "mali_kbase_tlstream.h"
 
 static int kbase_tracking_page_setup(struct kbase_context *kctx, struct vm_area_struct *vma);
 

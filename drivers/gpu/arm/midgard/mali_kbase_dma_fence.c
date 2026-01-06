@@ -32,7 +32,7 @@
 #include <linux/workqueue.h>
 #include <linux/ww_mutex.h>
 
-#include <mali_kbase.h>
+#include "mali_kbase.h"
 
 
 /* Spin lock protecting all Mali fences as fence->lock. */

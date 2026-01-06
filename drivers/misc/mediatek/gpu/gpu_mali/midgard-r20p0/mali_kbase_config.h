@@ -26,7 +26,7 @@
 
 #include <asm/page.h>
 
-#include <mali_malisw.h>
+#include "mali_malisw.h"
 #include <mali_kbase_backend_config.h>
 
 /**

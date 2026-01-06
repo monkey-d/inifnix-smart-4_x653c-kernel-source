@@ -15,10 +15,10 @@
 #include <linux/module.h>
 
 #include <mtk_idle.h>
-#include <mtk_idle_internal.h>
+#include "mtk_idle_internal.h"
 #include <mtk_spm_internal.h> /* mtk_idle_cond_check */
 
-#include <mtk_idle_sysfs.h>
+#include "mtk_idle_sysfs.h"
 
 static bool dpidle_feature_enable = MTK_IDLE_FEATURE_ENABLE_DPIDLE;
 static bool dpidle_bypass_idle_cond;

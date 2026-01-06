@@ -27,7 +27,7 @@
 #endif
 
 #include <mtk_idle.h>
-#include <mtk_idle_internal.h>
+#include "mtk_idle_internal.h"
 
 #include <mtk_spm_internal.h>
 #if defined(CONFIG_MTK_UFS_SUPPORT)

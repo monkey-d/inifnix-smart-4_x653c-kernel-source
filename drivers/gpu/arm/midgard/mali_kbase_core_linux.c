@@ -15,12 +15,12 @@
 
 
 
-#include <mali_kbase.h>
-#include <mali_kbase_config_defaults.h>
-#include <mali_kbase_uku.h>
-#include <mali_midg_regmap.h>
-#include <mali_kbase_gator.h>
-#include <mali_kbase_mem_linux.h>
+#include "mali_kbase.h"
+#include "mali_kbase_config_defaults.h"
+#include "mali_kbase_uku.h"
+#include "mali_midg_regmap.h"
+#include "mali_kbase_gator.h"
+#include "mali_kbase_mem_linux.h"
 #ifdef CONFIG_MALI_DEVFREQ
 #include <backend/gpu/mali_kbase_devfreq.h>
 #endif /* CONFIG_MALI_DEVFREQ */
@@ -34,8 +34,8 @@
 #if !MALI_CUSTOMER_RELEASE
 #include "mali_kbase_regs_dump_debugfs.h"
 #endif /* !MALI_CUSTOMER_RELEASE */
-#include <mali_kbase_hwaccess_backend.h>
-#include <mali_kbase_hwaccess_jm.h>
+#include "mali_kbase_hwaccess_backend.h"
+#include "mali_kbase_hwaccess_jm.h"
 #include <backend/gpu/mali_kbase_device_internal.h>
 
 #ifdef CONFIG_KDS
@@ -64,13 +64,13 @@
 #ifdef CONFIG_MALI_PLATFORM_DEVICETREE
 #include <linux/pm_runtime.h>
 #endif /* CONFIG_MALI_PLATFORM_DEVICETREE */
-#include <mali_kbase_hw.h>
+#include "mali_kbase_hw.h"
 #include <platform/mali_kbase_platform_common.h>
 #ifdef CONFIG_MALI_PLATFORM_FAKE
 #include <platform/mali_kbase_platform_fake.h>
 #endif /*CONFIG_MALI_PLATFORM_FAKE */
 #ifdef CONFIG_SYNC
-#include <mali_kbase_sync.h>
+#include "mali_kbase_sync.h"
 #endif /* CONFIG_SYNC */
 #ifdef CONFIG_PM_DEVFREQ
 #include <linux/devfreq.h>
@@ -78,7 +78,7 @@
 #include <linux/clk.h>
 #include <linux/delay.h>
 
-#include <mali_kbase_config.h>
+#include "mali_kbase_config.h"
 
 
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 13, 0))
@@ -87,9 +87,9 @@
 #include <linux/opp.h>
 #endif
 
-#include <mali_kbase_tlstream.h>
+#include "mali_kbase_tlstream.h"
 
-#include <mali_kbase_as_fault_debugfs.h>
+#include "mali_kbase_as_fault_debugfs.h"
 
 /* GPU IRQ Tags */
 #define	JOB_IRQ_TAG	0
@@ -3079,7 +3079,7 @@ static void power_control_term(struct kbase_device *kbdev)
 #ifdef CONFIG_DEBUG_FS
 
 #if KBASE_GPU_RESET_EN
-#include <mali_kbase_hwaccess_jm.h>
+#include "mali_kbase_hwaccess_jm.h"
 
 static void trigger_quirks_reload(struct kbase_device *kbdev)
 {

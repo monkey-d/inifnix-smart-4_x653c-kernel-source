@@ -18,7 +18,7 @@
 #ifndef _KBASE_CTX_SCHED_H_
 #define _KBASE_CTX_SCHED_H_
 
-#include <mali_kbase.h>
+#include "mali_kbase.h"
 
 /* The Context Scheduler manages address space assignment and reference
  * counting to kbase_context. The interface has been designed to minimise

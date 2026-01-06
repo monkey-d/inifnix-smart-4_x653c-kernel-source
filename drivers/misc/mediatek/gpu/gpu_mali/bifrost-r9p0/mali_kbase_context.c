@@ -21,11 +21,11 @@
  * Base kernel context APIs
  */
 
-#include <mali_kbase.h>
-#include <mali_midg_regmap.h>
-#include <mali_kbase_mem_linux.h>
-#include <mali_kbase_dma_fence.h>
-#include <mali_kbase_ctx_sched.h>
+#include "mali_kbase.h"
+#include "mali_midg_regmap.h"
+#include "mali_kbase_mem_linux.h"
+#include "mali_kbase_dma_fence.h"
+#include "mali_kbase_ctx_sched.h"
 
 /**
  * kbase_create_context() - Create a kernel base context.

@@ -32,12 +32,12 @@
 #include <linux/compat.h>
 #include <linux/version.h>
 
-#include <mali_kbase_config.h>
-#include <mali_kbase.h>
-#include <mali_midg_regmap.h>
-#include <mali_kbase_cache_policy.h>
-#include <mali_kbase_hw.h>
-#include <mali_kbase_tlstream.h>
+#include "mali_kbase_config.h"
+#include "mali_kbase.h"
+#include "mali_midg_regmap.h"
+#include "mali_kbase_cache_policy.h"
+#include "mali_kbase_hw.h"
+#include "mali_kbase_tlstream.h"
 
 #include "platform/mtk_platform_common.h"
 

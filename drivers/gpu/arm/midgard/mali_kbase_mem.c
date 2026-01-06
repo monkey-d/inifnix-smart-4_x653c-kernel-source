@@ -32,13 +32,13 @@
 #include <linux/compat.h>
 #include <linux/version.h>
 
-#include <mali_kbase_config.h>
-#include <mali_kbase.h>
-#include <mali_midg_regmap.h>
-#include <mali_kbase_cache_policy.h>
-#include <mali_kbase_hw.h>
-#include <mali_kbase_hwaccess_time.h>
-#include <mali_kbase_tlstream.h>
+#include "mali_kbase_config.h"
+#include "mali_kbase.h"
+#include "mali_midg_regmap.h"
+#include "mali_kbase_cache_policy.h"
+#include "mali_kbase_hw.h"
+#include "mali_kbase_hwaccess_time.h"
+#include "mali_kbase_tlstream.h"
 
 /**
  * @brief Check the zone compatibility of two regions.

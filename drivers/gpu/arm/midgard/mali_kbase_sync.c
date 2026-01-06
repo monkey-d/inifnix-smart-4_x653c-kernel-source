@@ -19,8 +19,8 @@
 
 #include <linux/seq_file.h>
 #include "sync.h"
-#include <mali_kbase.h>
-#include <mali_kbase_sync.h>
+#include "mali_kbase.h"
+#include "mali_kbase_sync.h"
 
 struct mali_sync_timeline {
 	struct sync_timeline timeline;

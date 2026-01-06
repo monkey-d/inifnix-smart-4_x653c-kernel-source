@@ -14,8 +14,8 @@
 
 
 
-#include <mali_kbase.h>
-#include <mali_kbase_config_defaults.h>
+#include "mali_kbase.h"
+#include "mali_kbase_config_defaults.h"
 
 #include "mali_kbase_ctx_sched.h"
 

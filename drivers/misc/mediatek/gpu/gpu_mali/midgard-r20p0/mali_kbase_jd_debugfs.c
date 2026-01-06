@@ -17,11 +17,11 @@
 #ifdef CONFIG_DEBUG_FS
 
 #include <linux/seq_file.h>
-#include <mali_kbase.h>
-#include <mali_kbase_jd_debugfs.h>
-#include <mali_kbase_dma_fence.h>
+#include "mali_kbase.h"
+#include "mali_kbase_jd_debugfs.h"
+#include "mali_kbase_dma_fence.h"
 #if defined(CONFIG_SYNC) || defined(CONFIG_SYNC_FILE)
-#include <mali_kbase_sync.h>
+#include "mali_kbase_sync.h"
 #endif
 
 struct kbase_jd_debugfs_depinfo {

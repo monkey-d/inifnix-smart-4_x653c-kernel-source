@@ -6,7 +6,7 @@
 #define _ASM_MMZONE_H_
 
 #include <asm/page.h>
-#include <mmzone.h>
+#include "mmzone.h"
 
 #ifdef CONFIG_DISCONTIGMEM
 

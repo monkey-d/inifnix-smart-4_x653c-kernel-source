@@ -17,7 +17,7 @@
 #if !defined(_KBASE_TLSTREAM_H)
 #define _KBASE_TLSTREAM_H
 
-#include <mali_kbase.h>
+#include "mali_kbase.h"
 
 /*****************************************************************************/
 

@@ -22,9 +22,9 @@
 #include <linux/irqchip/mtk-gic-extend.h>
 
 #include <mtk_idle.h>
-#include <mtk_idle_internal.h>
+#include "mtk_idle_internal.h"
 #include <mtk_spm_internal.h>
-#include <mtk_spm_resource_req_internal.h>
+#include "mtk_spm_resource_req_internal.h"
 #include "mtk_idle_sysfs.h"
 
 #include "mtk_lp_dts.h"

@@ -17,9 +17,9 @@
 
 #include <linux/seq_file.h>
 
-#include <mali_kbase.h>
+#include "mali_kbase.h"
 
-#include <mali_kbase_jd_debugfs.h>
+#include "mali_kbase_jd_debugfs.h"
 
 #ifdef CONFIG_DEBUG_FS
 

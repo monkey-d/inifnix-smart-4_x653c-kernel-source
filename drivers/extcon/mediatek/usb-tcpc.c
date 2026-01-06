@@ -22,7 +22,7 @@
 #include "inc/tcpm.h"
 #include <linux/workqueue.h>
 #include <linux/mutex.h>
-#include <extcon_usb.h>
+#include "extcon_usb.h"
 #ifdef CONFIG_MTK_USB_TYPEC_U3_MUX
 #include "usb_switch.h"
 #include "typec.h"

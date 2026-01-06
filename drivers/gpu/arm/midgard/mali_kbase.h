@@ -21,9 +21,9 @@
 #define _KBASE_H_
 
 #undef CONFIG_SYNC
-#include <mali_malisw.h>
+#include "mali_malisw.h"
 
-#include <mali_kbase_debug.h>
+#include "mali_kbase_debug.h"
 
 #include <asm/page.h>
 
@@ -43,8 +43,8 @@
 #include <linux/workqueue.h>
 
 #include "mali_base_kernel.h"
-#include <mali_kbase_uku.h>
-#include <mali_kbase_linux.h>
+#include "mali_kbase_uku.h"
+#include "mali_kbase_linux.h"
 
 #include "mali_kbase_strings.h"
 #include "mali_kbase_pm.h"
@@ -436,7 +436,7 @@ void kbasep_trace_add(struct kbase_device *kbdev, enum kbase_trace_code code, vo
 void kbasep_trace_clear(struct kbase_device *kbdev);
 #else /* #ifndef CONFIG_MALI_SYSTEM_TRACE */
 /* Dispatch kbase trace events as system trace events */
-#include <mali_linux_kbase_trace.h>
+#include "mali_linux_kbase_trace.h"
 #define KBASE_TRACE_ADD_SLOT(kbdev, code, ctx, katom, gpu_addr, jobslot)\
 	trace_mali_##code(jobslot, 0)
 

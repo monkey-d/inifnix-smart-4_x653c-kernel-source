@@ -37,7 +37,7 @@
 #include <linux/ump.h>
 #endif				/* CONFIG_UMP */
 #include "mali_base_kernel.h"
-#include <mali_kbase_hw.h>
+#include "mali_kbase_hw.h"
 #include "mali_kbase_pm.h"
 #include "mali_kbase_defs.h"
 #if defined(CONFIG_MALI_GATOR_SUPPORT)

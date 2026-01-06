@@ -15,8 +15,8 @@
 
 
 #include <linux/dma-mapping.h>
-#include <mali_kbase.h>
-#include <mali_kbase_10969_workaround.h>
+#include "mali_kbase.h"
+#include "mali_kbase_10969_workaround.h"
 
 /* This function is used to solve an HW issue with single iterator GPUs.
  * If a fragment job is soft-stopped on the edge of its bounding box, can happen that the

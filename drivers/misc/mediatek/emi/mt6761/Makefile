@@ -16,6 +16,8 @@ ccflags-y += -I$(srctree)/drivers/misc/mediatek/emi/submodule
 ccflags-y += -I$(srctree)/drivers/misc/mediatek/dramc
 ccflags-y += -I$(srctree)/drivers/misc/mediatek/dramc/$(MTK_PLATFORM)
 
+ccflags-y += -I$(src)
+
 obj-y += bwl_platform.o
 obj-y += mpu_platform.o
 obj-y += plat_debug_api.o

@@ -15,10 +15,10 @@
 
 
 
-#include <mali_kbase.h>
+#include "mali_kbase.h"
 
 #include <platform/mtk_platform_common.h>
-#include <mali_kbase_gpu_memory_debugfs.h>
+#include "mali_kbase_gpu_memory_debugfs.h"
 
 #ifdef CONFIG_DEBUG_FS
 

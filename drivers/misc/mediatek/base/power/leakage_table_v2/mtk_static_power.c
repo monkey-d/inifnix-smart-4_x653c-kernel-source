@@ -173,7 +173,8 @@ int mtk_spower_make_table(struct sptab_s *spt, int voltage, int degree,
 			unsigned int id, struct sptab_list *all_tab[])
 {
 	int i, j;
-	struct sptab_s *tab[MAX_TABLE_SIZE], *tab1, *tab2, *tspt;
+	// Initialize to {0} to shut up the compiler warning
+struct sptab_s *tab[MAX_TABLE_SIZE] = {0}, *tab1, *tab2, *tspt;
 	int wat; /* leakage that reads from efuse */
 	int devinfo_domain;
 	int c[MAX_TABLE_SIZE] = {0};

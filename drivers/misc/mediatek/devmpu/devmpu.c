@@ -22,7 +22,7 @@
 #include <mt_emi.h>
 #include <mpu_v1.h>
 #include <mpu_platform.h>
-#include <devmpu.h>
+#include "devmpu.h"
 
 #define LOG_TAG "[DEVMPU]"
 

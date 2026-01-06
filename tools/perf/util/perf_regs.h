@@ -16,7 +16,7 @@ struct sample_reg {
 extern const struct sample_reg sample_reg_masks[];
 
 #ifdef HAVE_PERF_REGS_SUPPORT
-#include <perf_regs.h>
+#include "perf_regs.h"
 
 int perf_reg_value(u64 *valp, struct regs_dump *regs, int id);
 

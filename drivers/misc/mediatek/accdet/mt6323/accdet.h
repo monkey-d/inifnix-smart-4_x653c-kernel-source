@@ -45,7 +45,7 @@
 #include <linux/regmap.h>
 
 #include <linux/string.h>
-#include <reg_accdet.h>
+#include "reg_accdet.h"
 
 /*-----IOCTL-----------------*/
 #define ACCDET_DEVNAME "accdet"

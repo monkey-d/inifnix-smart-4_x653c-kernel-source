@@ -15,7 +15,7 @@
 #include <linux/math64.h>
 
 #include <mtk_idle.h>
-#include <mtk_idle_internal.h>
+#include "mtk_idle_internal.h"
 
 #if defined(CONFIG_MTK_CPU_FREQ)
 #include <mtk_cpufreq_api.h>

@@ -1,0 +1,2233 @@
+set -e; echo '  CHK     include/config/kernel.release'; mkdir -p include/config/; 	echo "4.9.117$(/bin/bash ./scripts/setlocalversion .)" < include/config/auto.conf > include/config/kernel.release.tmp; if [ -r include/config/kernel.release ] && cmp -s include/config/kernel.release include/config/kernel.release.tmp; then rm -f include/config/kernel.release.tmp; else echo '  UPD     include/config/kernel.release'; mv -f include/config/kernel.release.tmp include/config/kernel.release; fi
+:
+make -f ./scripts/Makefile.asm-generic \
+            src=asm obj=arch/arm/include/generated/asm
+set -e; echo '  CHK     include/generated/uapi/linux/version.h'; mkdir -p include/generated/uapi/linux/; 	(echo \#define LINUX_VERSION_CODE 264565; echo '#define KERNEL_VERSION(a,b,c) (((a) << 16) + ((b) << 8) + (c))';) < Makefile > include/generated/uapi/linux/version.h.tmp; if [ -r include/generated/uapi/linux/version.h ] && cmp -s include/generated/uapi/linux/version.h include/generated/uapi/linux/version.h.tmp; then rm -f include/generated/uapi/linux/version.h.tmp; else echo '  UPD     include/generated/uapi/linux/version.h'; mv -f include/generated/uapi/linux/version.h.tmp include/generated/uapi/linux/version.h; fi
+rm -f include/linux/version.h
+echo '  WRAP    arch/arm/include/generated/asm/bitsperlong.h'; echo "#include <asm-generic/bitsperlong.h>" >arch/arm/include/generated/asm/bitsperlong.h
+echo '  WRAP    arch/arm/include/generated/asm/clkdev.h'; echo "#include <asm-generic/clkdev.h>" >arch/arm/include/generated/asm/clkdev.h
+echo '  WRAP    arch/arm/include/generated/asm/cputime.h'; echo "#include <asm-generic/cputime.h>" >arch/arm/include/generated/asm/cputime.h
+echo '  WRAP    arch/arm/include/generated/asm/current.h'; echo "#include <asm-generic/current.h>" >arch/arm/include/generated/asm/current.h
+echo '  WRAP    arch/arm/include/generated/asm/early_ioremap.h'; echo "#include <asm-generic/early_ioremap.h>" >arch/arm/include/generated/asm/early_ioremap.h
+echo '  WRAP    arch/arm/include/generated/asm/emergency-restart.h'; echo "#include <asm-generic/emergency-restart.h>" >arch/arm/include/generated/asm/emergency-restart.h
+echo '  WRAP    arch/arm/include/generated/asm/errno.h'; echo "#include <asm-generic/errno.h>" >arch/arm/include/generated/asm/errno.h
+echo '  WRAP    arch/arm/include/generated/asm/exec.h'; echo "#include <asm-generic/exec.h>" >arch/arm/include/generated/asm/exec.h
+echo '  WRAP    arch/arm/include/generated/asm/ioctl.h'; echo "#include <asm-generic/ioctl.h>" >arch/arm/include/generated/asm/ioctl.h
+echo '  WRAP    arch/arm/include/generated/asm/ipcbuf.h'; echo "#include <asm-generic/ipcbuf.h>" >arch/arm/include/generated/asm/ipcbuf.h
+echo '  WRAP    arch/arm/include/generated/asm/irq_regs.h'; echo "#include <asm-generic/irq_regs.h>" >arch/arm/include/generated/asm/irq_regs.h
+echo '  WRAP    arch/arm/include/generated/asm/kdebug.h'; echo "#include <asm-generic/kdebug.h>" >arch/arm/include/generated/asm/kdebug.h
+echo '  WRAP    arch/arm/include/generated/asm/local.h'; echo "#include <asm-generic/local.h>" >arch/arm/include/generated/asm/local.h
+echo '  WRAP    arch/arm/include/generated/asm/local64.h'; echo "#include <asm-generic/local64.h>" >arch/arm/include/generated/asm/local64.h
+echo '  WRAP    arch/arm/include/generated/asm/mm-arch-hooks.h'; echo "#include <asm-generic/mm-arch-hooks.h>" >arch/arm/include/generated/asm/mm-arch-hooks.h
+echo '  WRAP    arch/arm/include/generated/asm/msgbuf.h'; echo "#include <asm-generic/msgbuf.h>" >arch/arm/include/generated/asm/msgbuf.h
+echo '  WRAP    arch/arm/include/generated/asm/msi.h'; echo "#include <asm-generic/msi.h>" >arch/arm/include/generated/asm/msi.h
+echo '  WRAP    arch/arm/include/generated/asm/param.h'; echo "#include <asm-generic/param.h>" >arch/arm/include/generated/asm/param.h
+echo '  WRAP    arch/arm/include/generated/asm/parport.h'; echo "#include <asm-generic/parport.h>" >arch/arm/include/generated/asm/parport.h
+echo '  WRAP    arch/arm/include/generated/asm/poll.h'; echo "#include <asm-generic/poll.h>" >arch/arm/include/generated/asm/poll.h
+echo '  WRAP    arch/arm/include/generated/asm/preempt.h'; echo "#include <asm-generic/preempt.h>" >arch/arm/include/generated/asm/preempt.h
+echo '  WRAP    arch/arm/include/generated/asm/resource.h'; echo "#include <asm-generic/resource.h>" >arch/arm/include/generated/asm/resource.h
+echo '  WRAP    arch/arm/include/generated/asm/rwsem.h'; echo "#include <asm-generic/rwsem.h>" >arch/arm/include/generated/asm/rwsem.h
+echo '  WRAP    arch/arm/include/generated/asm/seccomp.h'; echo "#include <asm-generic/seccomp.h>" >arch/arm/include/generated/asm/seccomp.h
+echo '  WRAP    arch/arm/include/generated/asm/segment.h'; echo "#include <asm-generic/segment.h>" >arch/arm/include/generated/asm/segment.h
+echo '  WRAP    arch/arm/include/generated/asm/sembuf.h'; echo "#include <asm-generic/sembuf.h>" >arch/arm/include/generated/asm/sembuf.h
+echo '  WRAP    arch/arm/include/generated/asm/serial.h'; echo "#include <asm-generic/serial.h>" >arch/arm/include/generated/asm/serial.h
+echo '  WRAP    arch/arm/include/generated/asm/shmbuf.h'; echo "#include <asm-generic/shmbuf.h>" >arch/arm/include/generated/asm/shmbuf.h
+echo '  WRAP    arch/arm/include/generated/asm/siginfo.h'; echo "#include <asm-generic/siginfo.h>" >arch/arm/include/generated/asm/siginfo.h
+echo '  WRAP    arch/arm/include/generated/asm/simd.h'; echo "#include <asm-generic/simd.h>" >arch/arm/include/generated/asm/simd.h
+echo '  WRAP    arch/arm/include/generated/asm/sizes.h'; echo "#include <asm-generic/sizes.h>" >arch/arm/include/generated/asm/sizes.h
+echo '  WRAP    arch/arm/include/generated/asm/socket.h'; echo "#include <asm-generic/socket.h>" >arch/arm/include/generated/asm/socket.h
+echo '  WRAP    arch/arm/include/generated/asm/sockios.h'; echo "#include <asm-generic/sockios.h>" >arch/arm/include/generated/asm/sockios.h
+echo '  WRAP    arch/arm/include/generated/asm/termbits.h'; echo "#include <asm-generic/termbits.h>" >arch/arm/include/generated/asm/termbits.h
+echo '  WRAP    arch/arm/include/generated/asm/termios.h'; echo "#include <asm-generic/termios.h>" >arch/arm/include/generated/asm/termios.h
+echo '  WRAP    arch/arm/include/generated/asm/timex.h'; echo "#include <asm-generic/timex.h>" >arch/arm/include/generated/asm/timex.h
+echo '  WRAP    arch/arm/include/generated/asm/trace_clock.h'; echo "#include <asm-generic/trace_clock.h>" >arch/arm/include/generated/asm/trace_clock.h
+:
+make -f ./scripts/Makefile.asm-generic \
+            src=uapi/asm obj=arch/arm/include/generated/uapi/asm
+set -e; echo '  CHK     include/generated/utsrelease.h'; mkdir -p include/generated/; 	if [ `echo -n "" | wc -c ` -gt 64 ]; then echo '"" exceeds 64 characters' >&2; exit 1; fi; (echo \#define UTS_RELEASE \"\";) < include/config/kernel.release > include/generated/utsrelease.h.tmp; if [ -r include/generated/utsrelease.h ] && cmp -s include/generated/utsrelease.h include/generated/utsrelease.h.tmp; then rm -f include/generated/utsrelease.h.tmp; else echo '  UPD     include/generated/utsrelease.h'; mv -f include/generated/utsrelease.h.tmp include/generated/utsrelease.h; fi
+make -f ./scripts/Makefile.build obj=scripts/basic
+:
+:
+rm -f dtboimg.cfg.tmp
+echo /root/android_kernel_mediatek_mt6761-62-4.9/arch/arm/boot/dts/x653c_h6114go.dtb >>dtboimg.cfg.tmp; echo " id=0" >>dtboimg.cfg.tmp; 
+if ! cmp -s dtboimg.cfg.tmp dtboimg.cfg; then \
+	mv dtboimg.cfg.tmp dtboimg.cfg; \
+else \
+	rm dtboimg.cfg.tmp; \
+fi
+make -f ./scripts/Makefile.modbuiltin obj=init
+(cat /dev/null; ) > scripts/basic/modules.order
+:
+set -e;  echo '  HOSTCC  scripts/basic/bin2c'; gcc -Wp,-MD,scripts/basic/.bin2c.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -o scripts/basic/bin2c scripts/basic/bin2c.c  ; scripts/basic/fixdep scripts/basic/.bin2c.d scripts/basic/bin2c 'gcc -Wp,-MD,scripts/basic/.bin2c.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -o scripts/basic/bin2c scripts/basic/bin2c.c  ' > scripts/basic/.bin2c.tmp; rm -f scripts/basic/.bin2c.d; mv -f scripts/basic/.bin2c.tmp scripts/basic/.bin2c.cmd;
+:
+rm -f .tmp_quiet_recordmcount
+make -f ./scripts/Makefile.modbuiltin obj=usr
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > init/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=arch/arm/vfp
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > usr/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=arch/arm/vdso
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > arch/arm/vfp/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=arch/arm/kernel
+make -f ./scripts/Makefile.modbuiltin obj=arch/arm/mm
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > arch/arm/kernel/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=arch/arm/common
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > arch/arm/mm/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=arch/arm/probes
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > arch/arm/common/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=arch/arm/net
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > arch/arm/probes/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=arch/arm/crypto
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > arch/arm/net/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=arch/arm/firmware
+(for m in arch/arm/crypto/sha256-arm.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > arch/arm/crypto/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=kernel
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > arch/arm/firmware/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=certs
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > arch/arm/vdso/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=kernel/bpf
+make -f ./scripts/Makefile.modbuiltin obj=kernel/events
+make -f ./scripts/Makefile.modbuiltin obj=kernel/irq
+make -f ./scripts/Makefile.modbuiltin obj=mm
+make -f ./scripts/Makefile.modbuiltin obj=kernel/livepatch
+make -f ./scripts/Makefile.modbuiltin obj=kernel/locking
+make -f ./scripts/Makefile.modbuiltin obj=kernel/power
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > kernel/bpf/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=kernel/printk
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > certs/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=kernel/rcu
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > kernel/events/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=kernel/sched
+make -f ./scripts/Makefile.modbuiltin obj=kernel/time
+make -f ./scripts/Makefile.modbuiltin obj=kernel/trace
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > kernel/livepatch/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > kernel/irq/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > kernel/locking/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > kernel/rcu/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=fs
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > kernel/printk/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > kernel/power/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > kernel/time/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > kernel/sched/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > kernel/trace/modules.builtin
+:
+(for m in kernel/configs.ko; do echo kernel/$m; done;	\
+cat /dev/null kernel/bpf/modules.builtin kernel/events/modules.builtin kernel/irq/modules.builtin kernel/livepatch/modules.builtin kernel/locking/modules.builtin kernel/power/modules.builtin kernel/printk/modules.builtin kernel/rcu/modules.builtin kernel/sched/modules.builtin kernel/time/modules.builtin kernel/trace/modules.builtin) > kernel/modules.builtin
+:
+(for m in mm/zsmalloc.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > mm/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=ipc
+make -f ./scripts/Makefile.modbuiltin obj=fs/configfs
+make -f ./scripts/Makefile.modbuiltin obj=fs/crypto
+make -f ./scripts/Makefile.modbuiltin obj=fs/debugfs
+make -f ./scripts/Makefile.modbuiltin obj=security
+make -f ./scripts/Makefile.modbuiltin obj=fs/devpts
+make -f ./scripts/Makefile.modbuiltin obj=fs/exofs
+(for m in fs/configfs/configfs.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/configfs/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > ipc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=fs/ext4
+make -f ./scripts/Makefile.modbuiltin obj=fs/f2fs
+make -f ./scripts/Makefile.modbuiltin obj=fs/fat
+make -f ./scripts/Makefile.modbuiltin obj=fs/fuse
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/debugfs/modules.builtin
+:
+(for m in fs/crypto/fscrypto.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/crypto/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=fs/isofs
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/devpts/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/exofs/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=fs/jbd2
+(for m in fs/ext4/ext4.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/ext4/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=fs/kernfs
+make -f ./scripts/Makefile.modbuiltin obj=fs/nls
+make -f ./scripts/Makefile.modbuiltin obj=crypto
+make -f ./scripts/Makefile.modbuiltin obj=fs/notify
+(for m in fs/f2fs/f2fs.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/f2fs/modules.builtin
+:
+(for m in fs/fat/fat.ko fs/fat/vfat.ko fs/fat/msdos.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/fat/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=fs/proc
+(for m in fs/fuse/fuse.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/fuse/modules.builtin
+:
+(for m in fs/isofs/isofs.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/isofs/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=fs/pstore
+make -f ./scripts/Makefile.modbuiltin obj=fs/quota
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/kernfs/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=security/hie
+make -f ./scripts/Makefile.modbuiltin obj=fs/ramfs
+(for m in fs/nls/nls_base.ko fs/nls/nls_cp437.ko fs/nls/nls_cp950.ko fs/nls/nls_ascii.ko fs/nls/nls_iso8859-1.ko fs/nls/nls_utf8.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/nls/modules.builtin
+:
+(for m in fs/jbd2/jbd2.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/jbd2/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=fs/sdcardfs
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/proc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=security/integrity
+make -f ./scripts/Makefile.modbuiltin obj=fs/sysfs
+make -f ./scripts/Makefile.modbuiltin obj=security/keys
+make -f ./scripts/Makefile.modbuiltin obj=fs/notify/dnotify
+(for m in fs/pstore/pstore.ko fs/pstore/ramoops.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/pstore/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=fs/tracefs
+(for m in fs/quota/quota_v2.ko fs/quota/quota_tree.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/quota/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > security/hie/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/ramfs/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=fs/notify/fanotify
+make -f ./scripts/Makefile.modbuiltin obj=security/selinux
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > security/integrity/modules.builtin
+:
+(for m in fs/sdcardfs/sdcardfs.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/sdcardfs/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=block
+make -f ./scripts/Makefile.modbuiltin obj=fs/notify/inotify
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/sysfs/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/notify/dnotify/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > security/keys/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/tracefs/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/notify/fanotify/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > security/selinux/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null security/hie/modules.builtin security/integrity/modules.builtin security/keys/modules.builtin security/selinux/modules.builtin) > security/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > fs/notify/inotify/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null fs/notify/dnotify/modules.builtin fs/notify/fanotify/modules.builtin fs/notify/inotify/modules.builtin) > fs/notify/modules.builtin
+:
+(for m in fs/binfmt_script.ko fs/mbcache.ko; do echo kernel/$m; done;	\
+cat /dev/null fs/configfs/modules.builtin fs/crypto/modules.builtin fs/debugfs/modules.builtin fs/devpts/modules.builtin fs/exofs/modules.builtin fs/ext4/modules.builtin fs/f2fs/modules.builtin fs/fat/modules.builtin fs/fuse/modules.builtin fs/isofs/modules.builtin fs/jbd2/modules.builtin fs/kernfs/modules.builtin fs/nls/modules.builtin fs/notify/modules.builtin fs/proc/modules.builtin fs/pstore/modules.builtin fs/quota/modules.builtin fs/ramfs/modules.builtin fs/sdcardfs/modules.builtin fs/sysfs/modules.builtin fs/tracefs/modules.builtin) > fs/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers
+make -f ./scripts/Makefile.modbuiltin obj=block/partitions
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > block/partitions/modules.builtin
+:
+(for m in block/deadline-iosched.ko block/cfq-iosched.ko; do echo kernel/$m; done;	\
+cat /dev/null block/partitions/modules.builtin) > block/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound
+make -f ./scripts/Makefile.modbuiltin obj=drivers/amba
+make -f ./scripts/Makefile.modbuiltin obj=drivers/android
+make -f ./scripts/Makefile.modbuiltin obj=drivers/auxdisplay
+make -f ./scripts/Makefile.modbuiltin obj=drivers/base
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/amba/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/block
+make -f ./scripts/Makefile.modbuiltin obj=drivers/bus
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/android/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/base/power
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/auxdisplay/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/cdrom
+make -f ./scripts/Makefile.modbuiltin obj=firmware
+make -f ./scripts/Makefile.modbuiltin obj=drivers/char
+make -f ./scripts/Makefile.modbuiltin obj=drivers/base/regmap
+make -f ./scripts/Makefile.modbuiltin obj=drivers/char/ipmi
+make -f ./scripts/Makefile.modbuiltin obj=drivers/block/zram
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/bus/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk
+make -f ./scripts/Makefile.modbuiltin obj=sound/arm
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/cdrom/modules.builtin
+:
+(for m in drivers/base/regmap/regmap-i2c.ko drivers/base/regmap/regmap-spi.ko drivers/base/regmap/regmap-mmio.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/base/regmap/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/char/ipmi/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clocksource
+make -f ./scripts/Makefile.modbuiltin obj=sound/atmel
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/base/power/modules.builtin
+:
+(for m in drivers/base/firmware_class.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/base/power/modules.builtin drivers/base/regmap/modules.builtin) > drivers/base/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/cpufreq
+make -f ./scripts/Makefile.modbuiltin obj=drivers/char/agp
+make -f ./scripts/Makefile.modbuiltin obj=sound/core
+(for m in crypto/crypto.ko crypto/crypto_wq.ko crypto/crypto_algapi.ko crypto/aead.ko crypto/crypto_blkcipher.ko crypto/seqiv.ko crypto/echainiv.ko crypto/crypto_hash.ko crypto/akcipher.ko crypto/kpp.ko crypto/cryptomgr.ko crypto/hmac.ko crypto/xcbc.ko crypto/crypto_null.ko crypto/md5.ko crypto/sha1_generic.ko crypto/sha256_generic.ko crypto/sha512_generic.ko crypto/gf128mul.ko crypto/ecb.ko crypto/cbc.ko crypto/cts.ko crypto/xts.ko crypto/ctr.ko crypto/gcm.ko crypto/cryptd.ko crypto/des_generic.ko crypto/twofish_generic.ko crypto/twofish_common.ko crypto/aes_generic.ko crypto/arc4.ko crypto/deflate.ko crypto/crc32c_generic.ko crypto/crc32_generic.ko crypto/authenc.ko crypto/authencesn.ko crypto/lzo.ko crypto/lz4.ko crypto/rng.ko crypto/drbg.ko crypto/jitterentropy_rng.ko crypto/ghash-generic.ko crypto/ablk_helper.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > crypto/modules.builtin
+:
+(for m in drivers/block/zram/zram.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/block/zram/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/arm/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/drivers
+make -f ./scripts/Makefile.modbuiltin obj=net
+(for m in drivers/block/loop.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/block/zram/modules.builtin) > drivers/block/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/cpuidle
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/bcm
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/clocksource/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/crypto
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/atmel/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/firewire
+(for m in drivers/cpufreq/cpufreq_performance.ko drivers/cpufreq/cpufreq_powersave.ko drivers/cpufreq/cpufreq_userspace.ko drivers/cpufreq/cpufreq_ondemand.ko drivers/cpufreq/cpufreq_interactive.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/cpufreq/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/core/oss
+make -f ./scripts/Makefile.modbuiltin obj=drivers/devfreq
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/char/agp/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/char/rpmb
+make -f ./scripts/Makefile.modbuiltin obj=sound/drivers/mpu401
+make -f ./scripts/Makefile.modbuiltin obj=drivers/cpuidle/governors
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/clk/bcm/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/mediatek
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/core/oss/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/crypto/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/firewire/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/dma
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/hda
+make -f ./scripts/Makefile.modbuiltin obj=sound/core/seq
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/devfreq/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/dma-buf
+(for m in drivers/char/rpmb/rpmb-mtk.ko drivers/char/rpmb/rpmb.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/char/rpmb/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/char/agp/modules.builtin drivers/char/rpmb/modules.builtin) > drivers/char/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/drivers/opl3
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > firmware/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/drivers/mpu401/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/clk/mediatek/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/mvebu
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/cpuidle/governors/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/drivers/opl4
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/cpuidle/governors/modules.builtin) > drivers/cpuidle/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/firewire
+make -f ./scripts/Makefile.modbuiltin obj=drivers/clk/ti
+make -f ./scripts/Makefile.modbuiltin obj=drivers/dma/qcom
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/hda/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/i2c
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/dma-buf/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/firmware
+make -f ./scripts/Makefile.modbuiltin obj=sound/core/seq/oss
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/drivers/opl3/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/drivers/pcsp
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/clk/ti/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=arch/arm/lib
+make -f ./scripts/Makefile.modbuiltin obj=net/802
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/firewire/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/i2c/other
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/drivers/opl4/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpio
+make -f ./scripts/Makefile.modbuiltin obj=sound/isa
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/i2c/other/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/clk/mvebu/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null sound/i2c/other/modules.builtin) > sound/i2c/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/mips
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/clk/bcm/modules.builtin drivers/clk/mediatek/modules.builtin drivers/clk/mvebu/modules.builtin drivers/clk/ti/modules.builtin) > drivers/clk/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/dma/qcom/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/dma/xilinx
+make -f ./scripts/Makefile.modbuiltin obj=sound/isa/ad1816a
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/mips/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/oss
+(for m in sound/core/seq/oss/snd-seq-oss.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/core/seq/oss/modules.builtin
+:
+(for m in sound/core/seq/snd-seq.ko sound/core/seq/snd-seq-device.ko sound/core/seq/snd-seq-midi-event.ko sound/core/seq/snd-seq-dummy.ko sound/core/seq/snd-seq-midi.ko sound/core/seq/snd-seq-midi-event.ko; do echo kernel/$m; done;	\
+cat /dev/null sound/core/seq/oss/modules.builtin) > sound/core/seq/modules.builtin
+:
+(for m in sound/core/snd.ko sound/core/snd-hwdep.ko sound/core/snd-timer.ko sound/core/snd-hrtimer.ko sound/core/snd-pcm.ko sound/core/snd-rawmidi.ko; do echo kernel/$m; done;	\
+cat /dev/null sound/core/oss/modules.builtin sound/core/seq/modules.builtin) > sound/core/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/parisc
+(for m in ; do echo kernel/$m; done;	\
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/drivers/pcsp/modules.builtin
+cat /dev/null ) > sound/isa/ad1816a/modules.builtin
+:
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/drivers/vx
+make -f ./scripts/Makefile.modbuiltin obj=sound/isa/ad1848
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/dma/xilinx/modules.builtin
+:
+(for m in drivers/dma/virt-dma.ko drivers/dma/8250_mtk_dma.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/dma/qcom/modules.builtin drivers/dma/xilinx/modules.builtin) > drivers/dma/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/oss/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/hid
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/isa/ad1848/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci
+(for m in net/802/p8022.ko net/802/psnap.ko net/802/stp.ko; do echo kernel/$m; done;	\
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/isa/cs423x
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/gpio/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/hwtracing/intel_th
+cat /dev/null ) > net/802/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=net/8021q
+make -f ./scripts/Makefile.modbuiltin obj=drivers/hid/usbhid
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/arm
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/ac97
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/isa/cs423x/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/isa/es1688
+(for m in drivers/hid/usbhid/usbhid.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/hid/usbhid/modules.builtin
+:
+(for m in drivers/hid/hid.ko drivers/hid/uhid.ko drivers/hid/hid-generic.ko drivers/hid/hid-a4tech.ko drivers/hid/hid-apple.ko drivers/hid/hid-belkin.ko drivers/hid/hid-cherry.ko drivers/hid/hid-chicony.ko drivers/hid/hid-cypress.ko drivers/hid/hid-dr.ko drivers/hid/hid-ezkey.ko drivers/hid/hid-gyration.ko drivers/hid/hid-kensington.ko drivers/hid/hid-kye.ko drivers/hid/hid-logitech.ko drivers/hid/hid-magicmouse.ko drivers/hid/hid-microsoft.ko drivers/hid/hid-monterey.ko drivers/hid/hid-pl.ko drivers/hid/hid-petalynx.ko drivers/hid/hid-samsung.ko drivers/hid/hid-sjoy.ko drivers/hid/hid-sunplus.ko drivers/hid/hid-gaff.ko drivers/hid/hid-tmff.ko drivers/hid/hid-topseed.ko drivers/hid/hid-twinhan.ko drivers/hid/hid-zpff.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/hid/usbhid/modules.builtin) > drivers/hid/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/parisc/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/isa/es1688/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/isa/galaxy
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/drivers/vx/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/i2c
+make -f ./scripts/Makefile.modbuiltin obj=sound/isa/gus
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null sound/drivers/mpu401/modules.builtin sound/drivers/opl3/modules.builtin sound/drivers/opl4/modules.builtin sound/drivers/pcsp/modules.builtin sound/drivers/vx/modules.builtin) > sound/drivers/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pcmcia
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/isa/galaxy/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=lib
+make -f ./scripts/Makefile.modbuiltin obj=drivers/i2c/algos
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/hwtracing/intel_th/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/isa/gus/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/idle
+make -f ./scripts/Makefile.modbuiltin obj=sound/isa/msnd
+(for m in net/8021q/vlan_core.ko net/8021q/8021q.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > net/8021q/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=net/bridge
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/idle/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/ali5451
+(for m in drivers/i2c/algos/i2c-algo-bit.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/i2c/algos/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/i2c/busses
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/gpu/arm/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/ac97/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/asihpi
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/ali5451/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/ppc
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > arch/arm/lib/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pcmcia/pdaudiocf
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/asihpi/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/au88x0
+(for m in drivers/i2c/busses/i2c-mtk.ko drivers/i2c/busses/i2c-mtk_debug.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/i2c/busses/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/i2c/muxes
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/isa/msnd/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/isa/opti9xx
+make -f ./scripts/Makefile.modbuiltin obj=sound/sh
+make -f ./scripts/Makefile.modbuiltin obj=drivers/firmware/broadcom
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/ppc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=net/core
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pcmcia/pdaudiocf/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pcmcia/vx
+make -f ./scripts/Makefile.modbuiltin obj=net/bridge/netfilter
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/i2c/muxes/modules.builtin
+:
+(for m in drivers/i2c/i2c-core.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/i2c/algos/modules.builtin drivers/i2c/busses/modules.builtin drivers/i2c/muxes/modules.builtin) > drivers/i2c/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/bridge
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/au88x0/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/aw2
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pcmcia/vx/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/accel
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/gpu/drm/bridge/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/hisilicon
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/firmware/broadcom/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null sound/pcmcia/pdaudiocf/modules.builtin sound/pcmcia/vx/modules.builtin) > sound/pcmcia/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/firmware/meson
+make -f ./scripts/Makefile.modbuiltin obj=sound/isa/sb
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/isa/opti9xx/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/sh/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=net/ethernet
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > net/core/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > net/bridge/netfilter/modules.builtin
+:
+(for m in net/bridge/bridge.ko net/bridge/br_netfilter.ko; do echo kernel/$m; done;	\
+cat /dev/null net/bridge/netfilter/modules.builtin) > net/bridge/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/aw2/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/ca0106
+make -f ./scripts/Makefile.modbuiltin obj=net/ipv4
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/vga
+make -f ./scripts/Makefile.modbuiltin obj=lib/fonts
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/ca0106/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/cs46xx
+(for m in lib/fonts/font.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > lib/fonts/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=lib/lz4
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/cs46xx/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/cs5535audio
+(for m in lib/lz4/lz4_compress.ko lib/lz4/lz4_decompress.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > lib/lz4/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=lib/lzo
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/accel/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/adc
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/cs5535audio/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/isa/sb/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/ctxfi
+make -f ./scripts/Makefile.modbuiltin obj=sound/isa/wavefront
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/firmware/meson/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/firmware/broadcom/modules.builtin drivers/firmware/meson/modules.builtin) > drivers/firmware/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > net/ethernet/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=net/ipv6
+(for m in lib/lzo/lzo_compress.ko lib/lzo/lzo_decompress.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > lib/lzo/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=lib/reed_solomon
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/gpu/drm/hisilicon/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/i2c
+make -f ./scripts/Makefile.modbuiltin obj=net/ipv4/netfilter
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/adi
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/gpu/vga/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=lib/zlib_deflate
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/adc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/amplifiers
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/ctxfi/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/echoaudio
+(for m in lib/reed_solomon/reed_solomon.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > lib/reed_solomon/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=lib/zlib_inflate
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input/fingerprint
+(for m in net/ipv4/netfilter/nf_conntrack_ipv4.ko net/ipv4/netfilter/nf_nat_ipv4.ko net/ipv4/netfilter/nf_defrag_ipv4.ko net/ipv4/netfilter/nf_reject_ipv4.ko net/ipv4/netfilter/nf_nat_h323.ko net/ipv4/netfilter/nf_nat_pptp.ko net/ipv4/netfilter/nf_nat_masquerade_ipv4.ko net/ipv4/netfilter/nf_nat_proto_gre.ko net/ipv4/netfilter/ip_tables.ko net/ipv4/netfilter/iptable_filter.ko net/ipv4/netfilter/iptable_mangle.ko net/ipv4/netfilter/iptable_nat.ko net/ipv4/netfilter/iptable_raw.ko net/ipv4/netfilter/iptable_security.ko net/ipv4/netfilter/ipt_ah.ko net/ipv4/netfilter/ipt_MASQUERADE.ko net/ipv4/netfilter/ipt_REJECT.ko net/ipv4/netfilter/arp_tables.ko net/ipv4/netfilter/arpt_mangle.ko net/ipv4/netfilter/arptable_filter.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > net/ipv4/netfilter/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/isa/wavefront/modules.builtin
+:
+(for m in lib/zlib_deflate/zlib_deflate.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > lib/zlib_deflate/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/isa/wss
+(for m in net/ipv4/ip_tunnel.ko net/ipv4/ipip.ko net/ipv4/ip_vti.ko net/ipv4/ah4.ko net/ipv4/esp4.ko net/ipv4/ipcomp.ko net/ipv4/xfrm4_tunnel.ko net/ipv4/xfrm4_mode_beet.ko net/ipv4/tunnel4.ko net/ipv4/xfrm4_mode_transport.ko net/ipv4/xfrm4_mode_tunnel.ko net/ipv4/inet_diag.ko net/ipv4/tcp_diag.ko net/ipv4/udp_diag.ko net/ipv4/tcp_bic.ko net/ipv4/tcp_cubic.ko; do echo kernel/$m; done;	\
+cat /dev/null net/ipv4/netfilter/modules.builtin) > net/ipv4/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/sparc
+make -f ./scripts/Makefile.modbuiltin obj=virt
+make -f ./scripts/Makefile.modbuiltin obj=net/ipv6/netfilter
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/gpu/drm/i2c/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/omapdrm
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/adi/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/amd
+(for m in lib/zlib_inflate/zlib_inflate.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > lib/zlib_inflate/modules.builtin
+:
+(for m in lib/bitrev.ko lib/crc-ccitt.ko lib/crc16.ko lib/crc32.ko lib/libcrc32c.ko lib/ts_kmp.ko lib/ts_bm.ko lib/ts_fsm.ko; do echo kernel/$m; done;	\
+cat /dev/null lib/fonts/modules.builtin lib/lz4/modules.builtin lib/lzo/modules.builtin lib/reed_solomon/modules.builtin lib/zlib_deflate/modules.builtin lib/zlib_inflate/modules.builtin) > lib/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/echoaudio/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iommu
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/emu10k1
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/amplifiers/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/buffer
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/sparc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/spi
+(for m in net/ipv6/netfilter/ip6_tables.ko net/ipv6/netfilter/ip6table_filter.ko net/ipv6/netfilter/ip6table_mangle.ko net/ipv6/netfilter/ip6table_raw.ko net/ipv6/netfilter/nf_conntrack_ipv6.ko net/ipv6/netfilter/nf_defrag_ipv6.ko net/ipv6/netfilter/nf_reject_ipv6.ko net/ipv6/netfilter/ip6t_frag.ko net/ipv6/netfilter/ip6t_ipv6header.ko net/ipv6/netfilter/ip6t_rpfilter.ko net/ipv6/netfilter/ip6t_REJECT.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > net/ipv6/netfilter/modules.builtin
+:
+(for m in net/ipv6/ipv6.ko net/ipv6/ah6.ko net/ipv6/esp6.ko net/ipv6/ipcomp6.ko net/ipv6/xfrm6_tunnel.ko net/ipv6/tunnel6.ko net/ipv6/xfrm6_mode_transport.ko net/ipv6/xfrm6_mode_tunnel.ko net/ipv6/xfrm6_mode_ro.ko net/ipv6/xfrm6_mode_beet.ko net/ipv6/mip6.ko net/ipv6/ip6_vti.ko net/ipv6/sit.ko net/ipv6/ip6_tunnel.ko net/ipv6/inet6_hashtables.ko; do echo kernel/$m; done;	\
+cat /dev/null net/ipv6/netfilter/modules.builtin) > net/ipv6/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=net/key
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/input/fingerprint/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input/keyboard
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/omapdrm/displays
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/isa/wss/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null sound/isa/ad1816a/modules.builtin sound/isa/ad1848/modules.builtin sound/isa/cs423x/modules.builtin sound/isa/es1688/modules.builtin sound/isa/galaxy/modules.builtin sound/isa/gus/modules.builtin sound/isa/msnd/modules.builtin sound/isa/opti9xx/modules.builtin sound/isa/sb/modules.builtin sound/isa/wavefront/modules.builtin sound/isa/wss/modules.builtin) > sound/isa/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/synth
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/amd/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/atmel
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iommu/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/panel
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/gpu/drm/omapdrm/displays/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/emu10k1/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/gpu/drm/panel/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/au1x
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/omapdrm/dss
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/hda
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/buffer/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/au1x/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/chemical
+make -f ./scripts/Makefile.modbuiltin obj=net/llc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input/keyboard/mediatek
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/atmel/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/synth/emux
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/spi/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=net/netfilter
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/bcm
+(for m in net/key/af_key.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > net/key/modules.builtin
+:
+(for m in net/llc/llc.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > net/llc/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/bcm/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=net/netlink
+make -f ./scripts/Makefile.modbuiltin obj=drivers/irqchip
+make -f ./scripts/Makefile.modbuiltin obj=virt/lib
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/blackfin
+(for m in net/netfilter/nfnetlink.ko net/netfilter/nfnetlink_queue.ko net/netfilter/nfnetlink_log.ko net/netfilter/nf_conntrack.ko net/netfilter/nf_conntrack_proto_dccp.ko net/netfilter/nf_conntrack_proto_gre.ko net/netfilter/nf_conntrack_proto_sctp.ko net/netfilter/nf_conntrack_proto_udplite.ko net/netfilter/nf_conntrack_netlink.ko net/netfilter/nf_conntrack_amanda.ko net/netfilter/nf_conntrack_ftp.ko net/netfilter/nf_conntrack_h323.ko net/netfilter/nf_conntrack_irc.ko net/netfilter/nf_conntrack_broadcast.ko net/netfilter/nf_conntrack_netbios_ns.ko net/netfilter/nf_conntrack_pptp.ko net/netfilter/nf_conntrack_sane.ko net/netfilter/nf_conntrack_tftp.ko net/netfilter/nf_nat.ko net/netfilter/nf_nat_redirect.ko net/netfilter/nf_nat_proto_dccp.ko net/netfilter/nf_nat_proto_udplite.ko net/netfilter/nf_nat_proto_sctp.ko net/netfilter/nf_nat_amanda.ko net/netfilter/nf_nat_ftp.ko net/netfilter/nf_nat_irc.ko net/netfilter/nf_nat_tftp.ko net/netfilter/x_tables.ko net/netfilter/xt_tcpudp.ko net/netfilter/xt_mark.ko net/netfilter/xt_connmark.ko net/netfilter/xt_nat.ko net/netfilter/xt_CLASSIFY.ko net/netfilter/xt_CONNSECMARK.ko net/netfilter/xt_HL.ko net/netfilter/xt_NETMAP.ko net/netfilter/xt_NFLOG.ko net/netfilter/xt_NFQUEUE.ko net/netfilter/xt_REDIRECT.ko net/netfilter/xt_SECMARK.ko net/netfilter/xt_TPROXY.ko net/netfilter/xt_TCPMSS.ko net/netfilter/xt_TRACE.ko net/netfilter/xt_IDLETIMER.ko net/netfilter/xt_bpf.ko net/netfilter/xt_comment.ko net/netfilter/xt_connbytes.ko net/netfilter/xt_connlimit.ko net/netfilter/xt_conntrack.ko net/netfilter/xt_ecn.ko net/netfilter/xt_hashlimit.ko net/netfilter/xt_helper.ko net/netfilter/xt_hl.ko net/netfilter/xt_iprange.ko net/netfilter/xt_length.ko net/netfilter/xt_limit.ko net/netfilter/xt_mac.ko net/netfilter/xt_multiport.ko net/netfilter/xt_physdev.ko net/netfilter/xt_pkttype.ko net/netfilter/xt_policy.ko net/netfilter/xt_quota.ko net/netfilter/xt_quota2.ko net/netfilter/xt_realm.ko net/netfilter/xt_recent.ko net/netfilter/xt_socket.ko net/netfilter/xt_state.ko net/netfilter/xt_statistic.ko net/netfilter/xt_string.ko net/netfilter/xt_tcpmss.ko net/netfilter/xt_time.ko net/netfilter/xt_u32.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > net/netfilter/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input/misc
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/irqchip/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/hda/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/gpu/drm/tilcdc
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/ice1712
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/gpu/drm/omapdrm/dss/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/chemical/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/common
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/gpu/drm/omapdrm/displays/modules.builtin drivers/gpu/drm/omapdrm/dss/modules.builtin) > drivers/gpu/drm/omapdrm/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/usb
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input/keyboard/mediatek/mt6765
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/gpu/drm/tilcdc/modules.builtin
+:
+(for m in drivers/gpu/drm/drm_kms_helper.ko drivers/gpu/drm/drm.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/gpu/drm/bridge/modules.builtin drivers/gpu/drm/hisilicon/modules.builtin drivers/gpu/drm/i2c/modules.builtin drivers/gpu/drm/omapdrm/modules.builtin drivers/gpu/drm/panel/modules.builtin drivers/gpu/drm/tilcdc/modules.builtin) > drivers/gpu/drm/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/synth/emux/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/gpu/arm/modules.builtin drivers/gpu/drm/modules.builtin drivers/gpu/vga/modules.builtin) > drivers/gpu/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null sound/synth/emux/modules.builtin) > sound/synth/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=net/packet
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input/touchscreen
+(for m in drivers/input/misc/uinput.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/input/misc/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > net/netlink/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/usb/6fire
+make -f ./scripts/Makefile.modbuiltin obj=net/sched
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/korg1212
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/ice1712/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/cirrus
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > virt/lib/modules.builtin
+:
+(for m in net/packet/af_packet.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > net/packet/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/leds
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/blackfin/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null virt/lib/modules.builtin) > virt/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/codecs
+mkdir -p .tmp_versions ; rm -f .tmp_versions/*
+make -f ./scripts/Makefile.build obj=arch/arm/tools include/generated/mach-types.h
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/korg1212/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/lola
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/common/hid-sensors
+(for m in drivers/input/keyboard/mediatek/mt6765/hal_kpd.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/input/keyboard/mediatek/mt6765/modules.builtin
+:
+(for m in drivers/input/keyboard/mediatek/kpd.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/input/keyboard/mediatek/mt6765/modules.builtin) > drivers/input/keyboard/mediatek/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/input/keyboard/mediatek/modules.builtin) > drivers/input/keyboard/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/dac
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/usb/6fire/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/usb/bcd2000
+(for m in net/sched/act_police.ko net/sched/act_mirred.ko net/sched/act_ipt.ko net/sched/sch_htb.ko net/sched/sch_ingress.ko net/sched/cls_u32.ko net/sched/cls_fw.ko net/sched/cls_flow.ko net/sched/em_u32.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > net/sched/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=net/unix
+make -f ./scripts/Makefile.modbuiltin obj=drivers/input/touchscreen/mediatek
+make -f ./scripts/Makefile.modbuiltin obj=drivers/leds/trigger
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/lola/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/lx6464es
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/common/hid-sensors/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/common/ms_sensors
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/cirrus/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/mixart
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/dac/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/dummy
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/codecs/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/davinci
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/usb/bcd2000/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/usb/caiaq
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/mixart/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/input/touchscreen/mediatek/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/lguest
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/common/ms_sensors/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/lx6464es/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/nm256
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/common/ssp_sensors
+(for m in net/unix/unix.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > net/unix/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=net/wireless
+(for m in drivers/input/touchscreen/of_touchscreen.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/input/touchscreen/mediatek/modules.builtin) > drivers/input/touchscreen/modules.builtin
+:
+(for m in drivers/input/input-core.ko drivers/input/input-leds.ko drivers/input/evdev.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/input/fingerprint/modules.builtin drivers/input/keyboard/modules.builtin drivers/input/misc/modules.builtin drivers/input/touchscreen/modules.builtin) > drivers/input/modules.builtin
+:
+(for m in drivers/leds/trigger/ledtrig-timer.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/leds/trigger/modules.builtin
+:
+(for m in drivers/leds/led-class.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/leds/trigger/modules.builtin) > drivers/leds/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/dwc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/macintosh
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/usb/caiaq/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/usb/hiface
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/dummy/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/fsl
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/common/ssp_sensors/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/common/st_sensors
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/nm256/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/oxygen
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/davinci/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/generic
+set -e;  echo '  GEN     include/generated/mach-types.h'; mkdir -p include/generated/ && awk -f arch/arm/tools/gen-mach-types arch/arm/tools/mach-types > include/generated/mach-types.h || { rm -f include/generated/mach-types.h; /bin/false; }; printf '%s\n' 'cmd_include/generated/mach-types.h := mkdir -p include/generated/ && awk -f arch/arm/tools/gen-mach-types arch/arm/tools/mach-types > include/generated/mach-types.h || { rm -f include/generated/mach-types.h; /bin/false; }' > include/generated/.mach-types.h.cmd
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/frequency
+(for m in net/wireless/cfg80211.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > net/wireless/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=net/xfrm
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/dwc/modules.builtin
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/lguest/modules.builtin
+:
+:
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/mailbox
+make -f ./scripts/Makefile.build obj=scripts
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/fsl/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/usb/misc
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/macintosh/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/md
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/usb/hiface/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/usb/usx2y
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/common/st_sensors/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/iio/common/hid-sensors/modules.builtin drivers/iio/common/ms_sensors/modules.builtin drivers/iio/common/ssp_sensors/modules.builtin drivers/iio/common/st_sensors/modules.builtin) > drivers/iio/common/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/gyro
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/oxygen/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/pcxhr
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/usb/misc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/img
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/generic/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/intel
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/mailbox/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/frequency/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/health
+(for m in net/xfrm/xfrm_algo.ko net/xfrm/xfrm_user.ko net/xfrm/xfrm_ipcomp.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > net/xfrm/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null net/802/modules.builtin net/8021q/modules.builtin net/bridge/modules.builtin net/core/modules.builtin net/ethernet/modules.builtin net/ipv4/modules.builtin net/ipv6/modules.builtin net/key/modules.builtin net/llc/modules.builtin net/netfilter/modules.builtin net/netlink/modules.builtin net/packet/modules.builtin net/sched/modules.builtin net/unix/modules.builtin net/wireless/modules.builtin net/xfrm/modules.builtin) > net/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/riptide
+(for m in drivers/md/dm-mod.ko drivers/md/dm-bufio.ko drivers/md/dm-crypt.ko drivers/md/dm-verity.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/md/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/memory
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/usb/usx2y/modules.builtin
+:
+(for m in sound/usb/snd-usb-audio.ko sound/usb/snd-usbmidi-lib.ko; do echo kernel/$m; done;	\
+cat /dev/null sound/usb/6fire/modules.builtin sound/usb/bcd2000/modules.builtin sound/usb/caiaq/modules.builtin sound/usb/hiface/modules.builtin sound/usb/misc/modules.builtin sound/usb/usx2y/modules.builtin) > sound/usb/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/rme9652
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/gyro/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/humidity
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/img/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/jz4740
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/pcxhr/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/trident
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/common
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/intel/boards
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/health/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/imu
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/memory/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/mfd
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/riptide/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/firewire
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/humidity/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/rme9652/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/vx222
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/light
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/jz4740/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/kirkwood
+make -f ./scripts/Makefile.build obj=scripts/dtc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/imu/bmi160
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/trident/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/pci/ymfpci
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/intel/boards/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null sound/soc/intel/boards/modules.builtin) > sound/soc/intel/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/mediatek
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/common/b2c2
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/mfd/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/vx222/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/firewire/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/imu/inv_mpu6050
+make -f ./scripts/Makefile.build obj=scripts/genksyms
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/light/modules.builtin
+:
+make -f ./scripts/Makefile.build obj=scripts/mod
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/kirkwood/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/mxs
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/pci/ymfpci/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null sound/pci/ac97/modules.builtin sound/pci/ali5451/modules.builtin sound/pci/asihpi/modules.builtin sound/pci/au88x0/modules.builtin sound/pci/aw2/modules.builtin sound/pci/ca0106/modules.builtin sound/pci/cs46xx/modules.builtin sound/pci/cs5535audio/modules.builtin sound/pci/ctxfi/modules.builtin sound/pci/echoaudio/modules.builtin sound/pci/emu10k1/modules.builtin sound/pci/hda/modules.builtin sound/pci/ice1712/modules.builtin sound/pci/korg1212/modules.builtin sound/pci/lola/modules.builtin sound/pci/lx6464es/modules.builtin sound/pci/mixart/modules.builtin sound/pci/nm256/modules.builtin sound/pci/oxygen/modules.builtin sound/pci/pcxhr/modules.builtin sound/pci/riptide/modules.builtin sound/pci/rme9652/modules.builtin sound/pci/trident/modules.builtin sound/pci/vx222/modules.builtin sound/pci/ymfpci/modules.builtin) > sound/pci/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/i2c
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/imu/bmi160/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/mmc
+(cat /dev/null; ) > scripts/dtc/modules.order
+set -e;  echo '  HOSTCC  scripts/dtc/dtc.o'; gcc -Wp,-MD,scripts/dtc/.dtc.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/dtc.o scripts/dtc/dtc.c; scripts/basic/fixdep scripts/dtc/.dtc.o.d scripts/dtc/dtc.o 'gcc -Wp,-MD,scripts/dtc/.dtc.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/dtc.o scripts/dtc/dtc.c' > scripts/dtc/.dtc.o.tmp; rm -f scripts/dtc/.dtc.o.d; mv -f scripts/dtc/.dtc.o.tmp scripts/dtc/.dtc.o.cmd;
+set -e;  echo '  HOSTCC  scripts/dtc/flattree.o'; gcc -Wp,-MD,scripts/dtc/.flattree.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/flattree.o scripts/dtc/flattree.c; scripts/basic/fixdep scripts/dtc/.flattree.o.d scripts/dtc/flattree.o 'gcc -Wp,-MD,scripts/dtc/.flattree.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/flattree.o scripts/dtc/flattree.c' > scripts/dtc/.flattree.o.tmp; rm -f scripts/dtc/.flattree.o.d; mv -f scripts/dtc/.flattree.o.tmp scripts/dtc/.flattree.o.cmd;
+set -e;  echo '  HOSTCC  scripts/dtc/fstree.o'; gcc -Wp,-MD,scripts/dtc/.fstree.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/fstree.o scripts/dtc/fstree.c; scripts/basic/fixdep scripts/dtc/.fstree.o.d scripts/dtc/fstree.o 'gcc -Wp,-MD,scripts/dtc/.fstree.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/fstree.o scripts/dtc/fstree.c' > scripts/dtc/.fstree.o.tmp; rm -f scripts/dtc/.fstree.o.d; mv -f scripts/dtc/.fstree.o.tmp scripts/dtc/.fstree.o.cmd;
+set -e;  echo '  HOSTCC  scripts/dtc/data.o'; gcc -Wp,-MD,scripts/dtc/.data.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/data.o scripts/dtc/data.c; scripts/basic/fixdep scripts/dtc/.data.o.d scripts/dtc/data.o 'gcc -Wp,-MD,scripts/dtc/.data.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/data.o scripts/dtc/data.c' > scripts/dtc/.data.o.tmp; rm -f scripts/dtc/.data.o.d; mv -f scripts/dtc/.data.o.tmp scripts/dtc/.data.o.cmd;
+set -e;  echo '  HOSTCC  scripts/dtc/livetree.o'; gcc -Wp,-MD,scripts/dtc/.livetree.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/livetree.o scripts/dtc/livetree.c; scripts/basic/fixdep scripts/dtc/.livetree.o.d scripts/dtc/livetree.o 'gcc -Wp,-MD,scripts/dtc/.livetree.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/livetree.o scripts/dtc/livetree.c' > scripts/dtc/.livetree.o.tmp; rm -f scripts/dtc/.livetree.o.d; mv -f scripts/dtc/.livetree.o.tmp scripts/dtc/.livetree.o.cmd;
+set -e;  echo '  HOSTCC  scripts/dtc/treesource.o'; gcc -Wp,-MD,scripts/dtc/.treesource.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/treesource.o scripts/dtc/treesource.c; scripts/basic/fixdep scripts/dtc/.treesource.o.d scripts/dtc/treesource.o 'gcc -Wp,-MD,scripts/dtc/.treesource.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/treesource.o scripts/dtc/treesource.c' > scripts/dtc/.treesource.o.tmp; rm -f scripts/dtc/.treesource.o.d; mv -f scripts/dtc/.treesource.o.tmp scripts/dtc/.treesource.o.cmd;
+set -e;  echo '  HOSTCC  scripts/dtc/srcpos.o'; gcc -Wp,-MD,scripts/dtc/.srcpos.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/srcpos.o scripts/dtc/srcpos.c; scripts/basic/fixdep scripts/dtc/.srcpos.o.d scripts/dtc/srcpos.o 'gcc -Wp,-MD,scripts/dtc/.srcpos.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/srcpos.o scripts/dtc/srcpos.c' > scripts/dtc/.srcpos.o.tmp; rm -f scripts/dtc/.srcpos.o.d; mv -f scripts/dtc/.srcpos.o.tmp scripts/dtc/.srcpos.o.cmd;
+set -e;  echo '  HOSTCC  scripts/dtc/checks.o'; gcc -Wp,-MD,scripts/dtc/.checks.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/checks.o scripts/dtc/checks.c; scripts/basic/fixdep scripts/dtc/.checks.o.d scripts/dtc/checks.o 'gcc -Wp,-MD,scripts/dtc/.checks.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/checks.o scripts/dtc/checks.c' > scripts/dtc/.checks.o.tmp; rm -f scripts/dtc/.checks.o.d; mv -f scripts/dtc/.checks.o.tmp scripts/dtc/.checks.o.cmd;
+set -e;  echo '  HOSTCC  scripts/dtc/util.o'; gcc -Wp,-MD,scripts/dtc/.util.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/util.o scripts/dtc/util.c; scripts/basic/fixdep scripts/dtc/.util.o.d scripts/dtc/util.o 'gcc -Wp,-MD,scripts/dtc/.util.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/util.o scripts/dtc/util.c' > scripts/dtc/.util.o.tmp; rm -f scripts/dtc/.util.o.d; mv -f scripts/dtc/.util.o.tmp scripts/dtc/.util.o.cmd;
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/mediatek/codec/mt6357
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/common/b2c2/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/cb710
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/common/saa7146
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/mxs/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/nuc900
+(cat /dev/null; ) > scripts/genksyms/modules.order
+set -e;  echo '  HOSTCC  scripts/genksyms/genksyms.o'; gcc -Wp,-MD,scripts/genksyms/.genksyms.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -c -o scripts/genksyms/genksyms.o scripts/genksyms/genksyms.c; scripts/basic/fixdep scripts/genksyms/.genksyms.o.d scripts/genksyms/genksyms.o 'gcc -Wp,-MD,scripts/genksyms/.genksyms.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -c -o scripts/genksyms/genksyms.o scripts/genksyms/genksyms.c' > scripts/genksyms/.genksyms.o.tmp; rm -f scripts/genksyms/.genksyms.o.d; mv -f scripts/genksyms/.genksyms.o.tmp scripts/genksyms/.genksyms.o.cmd;
+echo '  SHIPPED scripts/genksyms/parse.tab.c'; cat scripts/genksyms/parse.tab.c_shipped > scripts/genksyms/parse.tab.c
+set -e;  echo '  HOSTCC  scripts/genksyms/parse.tab.o'; gcc -Wp,-MD,scripts/genksyms/.parse.tab.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/genksyms -c -o scripts/genksyms/parse.tab.o scripts/genksyms/parse.tab.c; scripts/basic/fixdep scripts/genksyms/.parse.tab.o.d scripts/genksyms/parse.tab.o 'gcc -Wp,-MD,scripts/genksyms/.parse.tab.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/genksyms -c -o scripts/genksyms/parse.tab.o scripts/genksyms/parse.tab.c' > scripts/genksyms/.parse.tab.o.tmp; rm -f scripts/genksyms/.parse.tab.o.d; mv -f scripts/genksyms/.parse.tab.o.tmp scripts/genksyms/.parse.tab.o.cmd;
+echo '  SHIPPED scripts/dtc/dtc-lexer.lex.c'; cat scripts/dtc/dtc-lexer.lex.c_shipped > scripts/dtc/dtc-lexer.lex.c
+echo '  SHIPPED scripts/dtc/dtc-parser.tab.h'; cat scripts/dtc/dtc-parser.tab.h_shipped > scripts/dtc/dtc-parser.tab.h
+set -e;  echo '  HOSTCC  scripts/dtc/dtc-lexer.lex.o'; gcc -Wp,-MD,scripts/dtc/.dtc-lexer.lex.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/dtc-lexer.lex.o scripts/dtc/dtc-lexer.lex.c; scripts/basic/fixdep scripts/dtc/.dtc-lexer.lex.o.d scripts/dtc/dtc-lexer.lex.o 'gcc -Wp,-MD,scripts/dtc/.dtc-lexer.lex.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/dtc-lexer.lex.o scripts/dtc/dtc-lexer.lex.c' > scripts/dtc/.dtc-lexer.lex.o.tmp; rm -f scripts/dtc/.dtc-lexer.lex.o.d; mv -f scripts/dtc/.dtc-lexer.lex.o.tmp scripts/dtc/.dtc-lexer.lex.o.cmd;
+echo '  SHIPPED scripts/dtc/dtc-parser.tab.c'; cat scripts/dtc/dtc-parser.tab.c_shipped > scripts/dtc/dtc-parser.tab.c
+set -e;  echo '  HOSTCC  scripts/dtc/dtc-parser.tab.o'; gcc -Wp,-MD,scripts/dtc/.dtc-parser.tab.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/dtc-parser.tab.o scripts/dtc/dtc-parser.tab.c; scripts/basic/fixdep scripts/dtc/.dtc-parser.tab.o.d scripts/dtc/dtc-parser.tab.o 'gcc -Wp,-MD,scripts/dtc/.dtc-parser.tab.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/dtc -Iscripts/dtc/libfdt -c -o scripts/dtc/dtc-parser.tab.o scripts/dtc/dtc-parser.tab.c' > scripts/dtc/.dtc-parser.tab.o.tmp; rm -f scripts/dtc/.dtc-parser.tab.o.d; mv -f scripts/dtc/.dtc-parser.tab.o.tmp scripts/dtc/.dtc-parser.tab.o.cmd;
+set -e;  echo '  HOSTLD  scripts/dtc/dtc'; gcc  -o scripts/dtc/dtc scripts/dtc/dtc.o scripts/dtc/flattree.o scripts/dtc/fstree.o scripts/dtc/data.o scripts/dtc/livetree.o scripts/dtc/treesource.o scripts/dtc/srcpos.o scripts/dtc/checks.o scripts/dtc/util.o scripts/dtc/dtc-lexer.lex.o scripts/dtc/dtc-parser.tab.o  ; printf '%s\n' 'cmd_scripts/dtc/dtc := gcc  -o scripts/dtc/dtc scripts/dtc/dtc.o scripts/dtc/flattree.o scripts/dtc/fstree.o scripts/dtc/data.o scripts/dtc/livetree.o scripts/dtc/treesource.o scripts/dtc/srcpos.o scripts/dtc/checks.o scripts/dtc/util.o scripts/dtc/dtc-lexer.lex.o scripts/dtc/dtc-parser.tab.o  ' > scripts/dtc/.dtc.cmd
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/imu/inv_mpu6050/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/iio/imu/bmi160/modules.builtin drivers/iio/imu/inv_mpu6050/modules.builtin) > drivers/iio/imu/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/magnetometer
+(cat /dev/null; ) > scripts/mod/modules.order
+set -e; 	   echo '  CC      scripts/mod/empty.o'; arm-eabi-gcc -Wp,-MD,scripts/mod/.empty.o.d -nostdinc -isystem /root/gcc-linaro-7.5.0-2019.12-x86_64_arm-eabi/bin/../lib/gcc/arm-eabi/7.5.0/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./drivers/misc/mediatek/include -I./include -I./drivers/misc/mediatek/include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1500 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types    -DKBUILD_BASENAME='"empty"'  -DKBUILD_MODNAME='"empty"' -c -o scripts/mod/.tmp_empty.o scripts/mod/empty.c; scripts/basic/fixdep scripts/mod/.empty.o.d scripts/mod/empty.o 'arm-eabi-gcc -Wp,-MD,scripts/mod/.empty.o.d -nostdinc -isystem /root/gcc-linaro-7.5.0-2019.12-x86_64_arm-eabi/bin/../lib/gcc/arm-eabi/7.5.0/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./drivers/misc/mediatek/include -I./include -I./drivers/misc/mediatek/include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1500 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types    -DKBUILD_BASENAME='\''"empty"'\''  -DKBUILD_MODNAME='\''"empty"'\'' -c -o scripts/mod/.tmp_empty.o scripts/mod/empty.c' > scripts/mod/.empty.o.tmp; rm -f scripts/mod/.empty.o.d; mv -f scripts/mod/.empty.o.tmp scripts/mod/.empty.o.cmd; if arm-eabi-objdump -h scripts/mod/.tmp_empty.o | grep -q __ksymtab; then arm-eabi-gcc -E -D__GENKSYMS__ -Wp,-MD,scripts/mod/.empty.o.d -nostdinc -isystem /root/gcc-linaro-7.5.0-2019.12-x86_64_arm-eabi/bin/../lib/gcc/arm-eabi/7.5.0/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./drivers/misc/mediatek/include -I./include -I./drivers/misc/mediatek/include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1500 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types    -DKBUILD_BASENAME='"empty"'  -DKBUILD_MODNAME='"empty"' scripts/mod/empty.c | scripts/genksyms/genksyms    -r /dev/null > scripts/mod/.tmp_empty.ver; arm-eabi-ld -EL  -r -o scripts/mod/empty.o scripts/mod/.tmp_empty.o -T scripts/mod/.tmp_empty.ver; rm -f scripts/mod/.tmp_empty.o scripts/mod/.tmp_empty.ver; else mv -f scripts/mod/.tmp_empty.o scripts/mod/empty.o; fi;   
+set -e;  echo '  HOSTCC  scripts/mod/mk_elfconfig'; gcc -Wp,-MD,scripts/mod/.mk_elfconfig.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -o scripts/mod/mk_elfconfig scripts/mod/mk_elfconfig.c  ; scripts/basic/fixdep scripts/mod/.mk_elfconfig.d scripts/mod/mk_elfconfig 'gcc -Wp,-MD,scripts/mod/.mk_elfconfig.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -o scripts/mod/mk_elfconfig scripts/mod/mk_elfconfig.c  ' > scripts/mod/.mk_elfconfig.tmp; rm -f scripts/mod/.mk_elfconfig.d; mv -f scripts/mod/.mk_elfconfig.tmp scripts/mod/.mk_elfconfig.cmd;
+set -e;  echo '  MKELF   scripts/mod/elfconfig.h'; scripts/mod/mk_elfconfig < scripts/mod/empty.o > scripts/mod/elfconfig.h; printf '%s\n' 'cmd_scripts/mod/elfconfig.h := scripts/mod/mk_elfconfig < scripts/mod/empty.o > scripts/mod/elfconfig.h' > scripts/mod/.elfconfig.h.cmd
+set -e;  echo '  HOSTCC  scripts/mod/modpost.o'; gcc -Wp,-MD,scripts/mod/.modpost.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -c -o scripts/mod/modpost.o scripts/mod/modpost.c; scripts/basic/fixdep scripts/mod/.modpost.o.d scripts/mod/modpost.o 'gcc -Wp,-MD,scripts/mod/.modpost.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -c -o scripts/mod/modpost.o scripts/mod/modpost.c' > scripts/mod/.modpost.o.tmp; rm -f scripts/mod/.modpost.o.d; mv -f scripts/mod/.modpost.o.tmp scripts/mod/.modpost.o.cmd;
+echo '  SHIPPED scripts/genksyms/lex.lex.c'; cat scripts/genksyms/lex.lex.c_shipped > scripts/genksyms/lex.lex.c
+echo '  SHIPPED scripts/genksyms/keywords.hash.c'; cat scripts/genksyms/keywords.hash.c_shipped > scripts/genksyms/keywords.hash.c
+echo '  SHIPPED scripts/genksyms/parse.tab.h'; cat scripts/genksyms/parse.tab.h_shipped > scripts/genksyms/parse.tab.h
+set -e;  echo '  HOSTCC  scripts/genksyms/lex.lex.o'; gcc -Wp,-MD,scripts/genksyms/.lex.lex.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/genksyms -c -o scripts/genksyms/lex.lex.o scripts/genksyms/lex.lex.c; scripts/basic/fixdep scripts/genksyms/.lex.lex.o.d scripts/genksyms/lex.lex.o 'gcc -Wp,-MD,scripts/genksyms/.lex.lex.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89    -Iscripts/genksyms -c -o scripts/genksyms/lex.lex.o scripts/genksyms/lex.lex.c' > scripts/genksyms/.lex.lex.o.tmp; rm -f scripts/genksyms/.lex.lex.o.d; mv -f scripts/genksyms/.lex.lex.o.tmp scripts/genksyms/.lex.lex.o.cmd;
+set -e;  echo '  HOSTLD  scripts/genksyms/genksyms'; gcc  -o scripts/genksyms/genksyms scripts/genksyms/genksyms.o scripts/genksyms/parse.tab.o scripts/genksyms/lex.lex.o  ; printf '%s\n' 'cmd_scripts/genksyms/genksyms := gcc  -o scripts/genksyms/genksyms scripts/genksyms/genksyms.o scripts/genksyms/parse.tab.o scripts/genksyms/lex.lex.o  ' > scripts/genksyms/.genksyms.cmd
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/nfc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/i2c/soc_camera
+make -f ./scripts/Makefile.modbuiltin obj=drivers/mmc/card
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/mediatek/codec/mt6357/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/mediatek/common_int
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/nuc900/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/omap
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/cb710/modules.builtin
+:
+set -e;  echo '  CC      scripts/mod/devicetable-offsets.s'; arm-eabi-gcc -Wp,-MD,scripts/mod/.devicetable-offsets.s.d -nostdinc -isystem /root/gcc-linaro-7.5.0-2019.12-x86_64_arm-eabi/bin/../lib/gcc/arm-eabi/7.5.0/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./drivers/misc/mediatek/include -I./include -I./drivers/misc/mediatek/include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1500 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types    -DKBUILD_BASENAME='"devicetable_offsets"'  -DKBUILD_MODNAME='"devicetable_offsets"'  -fverbose-asm -S -o scripts/mod/devicetable-offsets.s scripts/mod/devicetable-offsets.c; scripts/basic/fixdep scripts/mod/.devicetable-offsets.s.d scripts/mod/devicetable-offsets.s 'arm-eabi-gcc -Wp,-MD,scripts/mod/.devicetable-offsets.s.d -nostdinc -isystem /root/gcc-linaro-7.5.0-2019.12-x86_64_arm-eabi/bin/../lib/gcc/arm-eabi/7.5.0/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./drivers/misc/mediatek/include -I./include -I./drivers/misc/mediatek/include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1500 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types    -DKBUILD_BASENAME='\''"devicetable_offsets"'\''  -DKBUILD_MODNAME='\''"devicetable_offsets"'\''  -fverbose-asm -S -o scripts/mod/devicetable-offsets.s scripts/mod/devicetable-offsets.c' > scripts/mod/.devicetable-offsets.s.tmp; rm -f scripts/mod/.devicetable-offsets.s.d; mv -f scripts/mod/.devicetable-offsets.s.tmp scripts/mod/.devicetable-offsets.s.cmd;
+set -e; echo '  CHK     scripts/mod/devicetable-offsets.h'; mkdir -p scripts/mod/; 	(set -e; echo "#ifndef __DEVICETABLE_OFFSETS_H__"; echo "#define __DEVICETABLE_OFFSETS_H__"; echo "/*"; echo " * DO NOT MODIFY."; echo " *"; echo " * This file was generated by Kbuild"; echo " */"; echo ""; sed -ne 	's:^[[:space:]]*\.ascii[[:space:]]*"\(.*\)".*:\1:; /^->/{s:->#\(.*\):/* \1 */:; s:^->\([^ ]*\) [\$#]*\([^ ]*\) \(.*\):#define \1 \2 /* \3 */:; s:->::; p;}'; echo ""; echo "#endif" ) < scripts/mod/devicetable-offsets.s > scripts/mod/devicetable-offsets.h.tmp; if [ -r scripts/mod/devicetable-offsets.h ] && cmp -s scripts/mod/devicetable-offsets.h scripts/mod/devicetable-offsets.h.tmp; then rm -f scripts/mod/devicetable-offsets.h.tmp; else echo '  UPD     scripts/mod/devicetable-offsets.h'; mv -f scripts/mod/devicetable-offsets.h.tmp scripts/mod/devicetable-offsets.h; fi
+set -e;  echo '  HOSTCC  scripts/mod/file2alias.o'; gcc -Wp,-MD,scripts/mod/.file2alias.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -c -o scripts/mod/file2alias.o scripts/mod/file2alias.c; scripts/basic/fixdep scripts/mod/.file2alias.o.d scripts/mod/file2alias.o 'gcc -Wp,-MD,scripts/mod/.file2alias.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -c -o scripts/mod/file2alias.o scripts/mod/file2alias.c' > scripts/mod/.file2alias.o.tmp; rm -f scripts/mod/.file2alias.o.d; mv -f scripts/mod/.file2alias.o.tmp scripts/mod/.file2alias.o.cmd;
+set -e;  echo '  HOSTCC  scripts/mod/sumversion.o'; gcc -Wp,-MD,scripts/mod/.sumversion.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -c -o scripts/mod/sumversion.o scripts/mod/sumversion.c; scripts/basic/fixdep scripts/mod/.sumversion.o.d scripts/mod/sumversion.o 'gcc -Wp,-MD,scripts/mod/.sumversion.o.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89     -c -o scripts/mod/sumversion.o scripts/mod/sumversion.c' > scripts/mod/.sumversion.o.tmp; rm -f scripts/mod/.sumversion.o.d; mv -f scripts/mod/.sumversion.o.tmp scripts/mod/.sumversion.o.cmd;
+set -e;  echo '  HOSTLD  scripts/mod/modpost'; gcc  -o scripts/mod/modpost scripts/mod/modpost.o scripts/mod/file2alias.o scripts/mod/sumversion.o  ; printf '%s\n' 'cmd_scripts/mod/modpost := gcc  -o scripts/mod/modpost scripts/mod/modpost.o scripts/mod/file2alias.o scripts/mod/sumversion.o  ' > scripts/mod/.modpost.cmd
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/eeprom
+make -f ./scripts/Makefile.build obj=scripts/selinux
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/common/saa7146/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/common/siano
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/ppp
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/magnetometer/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/orientation
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/omap/modules.builtin
+:
+set -e;  echo '  HOSTCC  scripts/kallsyms'; gcc -Wp,-MD,scripts/.kallsyms.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -I./tools/include  -o scripts/kallsyms scripts/kallsyms.c  ; scripts/basic/fixdep scripts/.kallsyms.d scripts/kallsyms 'gcc -Wp,-MD,scripts/.kallsyms.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -I./tools/include  -o scripts/kallsyms scripts/kallsyms.c  ' > scripts/.kallsyms.tmp; rm -f scripts/.kallsyms.d; mv -f scripts/.kallsyms.tmp scripts/.kallsyms.cmd;
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/lis3lv02d
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/nfc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/i2c/soc_camera/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/media/i2c/soc_camera/modules.builtin) > drivers/media/i2c/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/mmc
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/eeprom/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/mmc/core
+(for m in drivers/mmc/card/mmc_block.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/mmc/card/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/common/siano/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/mediatek/common_int/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/common/v4l2-tpg
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/mediatek/mt6765
+make -f ./scripts/Makefile.modbuiltin obj=drivers/mmc/host
+make -f ./scripts/Makefile.build obj=scripts/selinux/genheaders
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/lis3lv02d/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/pxa
+(for m in drivers/mmc/core/mmc_core.ko drivers/mmc/core/pwrseq_simple.ko drivers/mmc/core/pwrseq_emmc.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/mmc/core/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/potentiometer
+(for m in drivers/net/ppp/ppp_generic.ko drivers/net/ppp/ppp_async.ko drivers/net/ppp/bsd_comp.ko drivers/net/ppp/ppp_deflate.ko drivers/net/ppp/ppp_mppe.ko drivers/net/ppp/ppp_synctty.ko drivers/net/ppp/pppox.ko drivers/net/ppp/pppoe.ko drivers/net/ppp/pppox.ko drivers/net/ppp/pppolac.ko drivers/net/ppp/pppox.ko drivers/net/ppp/pppopns.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/ppp/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/slip
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/orientation/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/nvme
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/pxa/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/common/v4l2-tpg/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/qcom
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/media/common/b2c2/modules.builtin drivers/media/common/saa7146/modules.builtin drivers/media/common/siano/modules.builtin drivers/media/common/v4l2-tpg/modules.builtin) > drivers/media/common/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/mmc/siano
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/accdet
+(cat /dev/null; ) > scripts/selinux/genheaders/modules.order
+set -e;  echo '  HOSTCC  scripts/selinux/genheaders/genheaders'; gcc -Wp,-MD,scripts/selinux/genheaders/.genheaders.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -Isecurity/selinux/include  -o scripts/selinux/genheaders/genheaders scripts/selinux/genheaders/genheaders.c  ; scripts/basic/fixdep scripts/selinux/genheaders/.genheaders.d scripts/selinux/genheaders/genheaders 'gcc -Wp,-MD,scripts/selinux/genheaders/.genheaders.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -Isecurity/selinux/include  -o scripts/selinux/genheaders/genheaders scripts/selinux/genheaders/genheaders.c  ' > scripts/selinux/genheaders/.genheaders.tmp; rm -f scripts/selinux/genheaders/.genheaders.d; mv -f scripts/selinux/genheaders/.genheaders.tmp scripts/selinux/genheaders/.genheaders.cmd;
+:
+make -f ./scripts/Makefile.build obj=scripts/selinux/mdp
+make -f ./scripts/Makefile.modbuiltin obj=drivers/mmc/host/mediatek
+make -f ./scripts/Makefile.modbuiltin obj=drivers/nvme/host
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/mediatek/mt6765/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/mmc/siano/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/mediatek/vendor
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/potentiometer/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/media/mmc/siano/modules.builtin) > drivers/media/mmc/modules.builtin
+:
+(for m in drivers/net/slip/slhc.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/slip/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/usb
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/pressure
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/platform
+(cat /dev/null; ) > scripts/selinux/mdp/modules.order
+set -e;  echo '  HOSTCC  scripts/selinux/mdp/mdp'; gcc -Wp,-MD,scripts/selinux/mdp/.mdp.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -Isecurity/selinux/include  -o scripts/selinux/mdp/mdp scripts/selinux/mdp/mdp.c  ; scripts/basic/fixdep scripts/selinux/mdp/.mdp.d scripts/selinux/mdp/mdp 'gcc -Wp,-MD,scripts/selinux/mdp/.mdp.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -Isecurity/selinux/include  -o scripts/selinux/mdp/mdp scripts/selinux/mdp/mdp.c  ' > scripts/selinux/mdp/.mdp.tmp; rm -f scripts/selinux/mdp/.mdp.d; mv -f scripts/selinux/mdp/.mdp.tmp scripts/selinux/mdp/.mdp.cmd;
+:
+(cat /dev/null; ) > scripts/selinux/modules.order
+:
+set -e;  echo '  HOSTCC  scripts/pnmtologo'; gcc -Wp,-MD,scripts/.pnmtologo.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -I./tools/include  -o scripts/pnmtologo scripts/pnmtologo.c  ; scripts/basic/fixdep scripts/.pnmtologo.d scripts/pnmtologo 'gcc -Wp,-MD,scripts/.pnmtologo.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -I./tools/include  -o scripts/pnmtologo scripts/pnmtologo.c  ' > scripts/.pnmtologo.tmp; rm -f scripts/.pnmtologo.d; mv -f scripts/.pnmtologo.tmp scripts/.pnmtologo.cmd;
+set -e;  echo '  HOSTCC  scripts/sortextable'; gcc -Wp,-MD,scripts/.sortextable.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -I./tools/include -I./tools/include -o scripts/sortextable scripts/sortextable.c  ; scripts/basic/fixdep scripts/.sortextable.d scripts/sortextable 'gcc -Wp,-MD,scripts/.sortextable.d -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89   -I./tools/include -I./tools/include -o scripts/sortextable scripts/sortextable.c  ' > scripts/.sortextable.tmp; rm -f scripts/.sortextable.d; mv -f scripts/.sortextable.tmp scripts/.sortextable.cmd;
+(cat /dev/null; ) > scripts/modules.order
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/b2c2
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/qcom/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/rockchip
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/accdet/mt6357
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/nvme/host/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/nvme/target
+make -f ./scripts/Makefile.modbuiltin obj=drivers/mmc/host/mediatek/ComboA
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/pressure/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/proximity
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/usb/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mic
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/mediatek/vendor/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null sound/soc/mediatek/codec/mt6357/modules.builtin sound/soc/mediatek/common_int/modules.builtin sound/soc/mediatek/mt6765/modules.builtin sound/soc/mediatek/vendor/modules.builtin) > sound/soc/mediatek/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/aee
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/pci/b2c2/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/ddbridge
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/rockchip/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/platform/omap
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/samsung
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/admtek
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/nvme/target/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/nvme/host/modules.builtin drivers/nvme/target/modules.builtin) > drivers/nvme/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/dm1105
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/accdet/mt6357/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/accdet/mt6357/modules.builtin) > drivers/misc/mediatek/accdet/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/ath
+(for m in drivers/mmc/host/mediatek/ComboA/msdc.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/mmc/host/mediatek/ComboA/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mic/bus
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/proximity/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/temperature
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/mmc/host/mediatek/ComboA/modules.builtin) > drivers/mmc/host/mediatek/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/pci/ddbridge/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/mmc/host/mediatek/modules.builtin) > drivers/mmc/host/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/mmc/card/modules.builtin drivers/mmc/core/modules.builtin drivers/mmc/host/modules.builtin) > drivers/mmc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/of
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/aee/aed
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/atmel
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/samsung/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/admtek/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/sh
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/platform/omap/modules.builtin
+:
+make -f ./scripts/Makefile.build obj=.
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/media/platform/omap/modules.builtin) > drivers/media/platform/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/rc
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mic/bus/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mic/bus/modules.builtin) > drivers/misc/mic/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/broadcom
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/pci/dm1105/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/ath/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/mantis
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/of/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/spi
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/cisco
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/temperature/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/iio/trigger
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/atmel/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/atf
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/sh/modules.builtin
+:
+(for m in drivers/misc/mediatek/aee/aed/aed.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/aee/aed/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/aee/common
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/broadcom/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/sirf
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/rc/keymaps
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/spi/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/aee/mrdump
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/cisco/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/audio_ipi
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/intel
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/pci/mantis/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/netup_unidvb
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/atf/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/ti-st
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/iio/trigger/modules.builtin
+:
+(for m in drivers/iio/industrialio.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/iio/accel/modules.builtin drivers/iio/adc/modules.builtin drivers/iio/amplifiers/modules.builtin drivers/iio/buffer/modules.builtin drivers/iio/chemical/modules.builtin drivers/iio/common/modules.builtin drivers/iio/dac/modules.builtin drivers/iio/dummy/modules.builtin drivers/iio/frequency/modules.builtin drivers/iio/gyro/modules.builtin drivers/iio/health/modules.builtin drivers/iio/humidity/modules.builtin drivers/iio/imu/modules.builtin drivers/iio/light/modules.builtin drivers/iio/magnetometer/modules.builtin drivers/iio/orientation/modules.builtin drivers/iio/potentiometer/modules.builtin drivers/iio/pressure/modules.builtin drivers/iio/proximity/modules.builtin drivers/iio/temperature/modules.builtin drivers/iio/trigger/modules.builtin) > drivers/iio/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/auxadc
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/sirf/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/spear
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/aee/common/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/tuners
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/intel/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/audio_ipi/modules.builtin
+:
+(for m in drivers/misc/mediatek/aee/mrdump/mrdump.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/aee/mrdump/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/rc/keymaps/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/media/rc/keymaps/modules.builtin) > drivers/media/rc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/intersil
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/sti
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/aee/aed/modules.builtin drivers/misc/mediatek/aee/common/modules.builtin drivers/misc/mediatek/aee/mrdump/modules.builtin) > drivers/misc/mediatek/aee/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/sunxi
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/pci/netup_unidvb/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/ngene
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/ti-st/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/marvell
+(for m in drivers/misc/mediatek/auxadc/mtk_auxadc.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/auxadc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/mediatek
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/spear/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb
+(cat /dev/null; ) > modules.order
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/tuners/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/perf
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/marvell/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/sti/modules.builtin
+:
+make -f ./scripts/Makefile.build obj=arch/arm/boot/dts MACHINE= arch/arm/boot/dts/mt6761.dtb
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/ralink
+mkdir -p kernel/
+set -e;  echo '  CC      kernel/bounds.s'; arm-eabi-gcc -Wp,-MD,kernel/.bounds.s.d -nostdinc -isystem /root/gcc-linaro-7.5.0-2019.12-x86_64_arm-eabi/bin/../lib/gcc/arm-eabi/7.5.0/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./drivers/misc/mediatek/include -I./include -I./drivers/misc/mediatek/include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1500 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types    -DKBUILD_BASENAME='"bounds"'  -DKBUILD_MODNAME='"bounds"'  -fverbose-asm -S -o kernel/bounds.s kernel/bounds.c; scripts/basic/fixdep kernel/.bounds.s.d kernel/bounds.s 'arm-eabi-gcc -Wp,-MD,kernel/.bounds.s.d -nostdinc -isystem /root/gcc-linaro-7.5.0-2019.12-x86_64_arm-eabi/bin/../lib/gcc/arm-eabi/7.5.0/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./drivers/misc/mediatek/include -I./include -I./drivers/misc/mediatek/include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1500 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types    -DKBUILD_BASENAME='\''"bounds"'\''  -DKBUILD_MODNAME='\''"bounds"'\''  -fverbose-asm -S -o kernel/bounds.s kernel/bounds.c' > kernel/.bounds.s.tmp; rm -f kernel/.bounds.s.d; mv -f kernel/.bounds.s.tmp kernel/.bounds.s.cmd;
+set -e; echo '  CHK     include/generated/bounds.h'; mkdir -p include/generated/; 	(set -e; echo "#ifndef __LINUX_BOUNDS_H__"; echo "#define __LINUX_BOUNDS_H__"; echo "/*"; echo " * DO NOT MODIFY."; echo " *"; echo " * This file was generated by Kbuild"; echo " */"; echo ""; sed -ne 	's:^[[:space:]]*\.ascii[[:space:]]*"\(.*\)".*:\1:; /^->/{s:->#\(.*\):/* \1 */:; s:^->\([^ ]*\) [\$#]*\([^ ]*\) \(.*\):#define \1 \2 /* \3 */:; s:->::; p;}'; echo ""; echo "#endif" ) < kernel/bounds.s > include/generated/bounds.h.tmp; if [ -r include/generated/bounds.h ] && cmp -s include/generated/bounds.h include/generated/bounds.h.tmp; then rm -f include/generated/bounds.h.tmp; else echo '  UPD     include/generated/bounds.h'; mv -f include/generated/bounds.h.tmp include/generated/bounds.h; fi
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/intersil/modules.builtin
+:
+set -e; echo '  CHK     include/generated/timeconst.h'; mkdir -p include/generated/; 	(echo 300 | bc -q kernel/time/timeconst.bc ) < kernel/time/timeconst.bc > include/generated/timeconst.h.tmp; if [ -r include/generated/timeconst.h ] && cmp -s include/generated/timeconst.h include/generated/timeconst.h.tmp; then rm -f include/generated/timeconst.h.tmp; else echo '  UPD     include/generated/timeconst.h'; mv -f include/generated/timeconst.h.tmp include/generated/timeconst.h; fi
+mkdir -p arch/arm/kernel/
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/pluto2
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/pci/ngene/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/blocktag
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/sunxi/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/tegra
+set -e;  echo '  CC      arch/arm/kernel/asm-offsets.s'; arm-eabi-gcc -Wp,-MD,arch/arm/kernel/.asm-offsets.s.d -nostdinc -isystem /root/gcc-linaro-7.5.0-2019.12-x86_64_arm-eabi/bin/../lib/gcc/arm-eabi/7.5.0/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./drivers/misc/mediatek/include -I./include -I./drivers/misc/mediatek/include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1500 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types    -DKBUILD_BASENAME='"asm_offsets"'  -DKBUILD_MODNAME='"asm_offsets"'  -fverbose-asm -S -o arch/arm/kernel/asm-offsets.s arch/arm/kernel/asm-offsets.c; scripts/basic/fixdep arch/arm/kernel/.asm-offsets.s.d arch/arm/kernel/asm-offsets.s 'arm-eabi-gcc -Wp,-MD,arch/arm/kernel/.asm-offsets.s.d -nostdinc -isystem /root/gcc-linaro-7.5.0-2019.12-x86_64_arm-eabi/bin/../lib/gcc/arm-eabi/7.5.0/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./drivers/misc/mediatek/include -I./include -I./drivers/misc/mediatek/include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1500 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types    -DKBUILD_BASENAME='\''"asm_offsets"'\''  -DKBUILD_MODNAME='\''"asm_offsets"'\''  -fverbose-asm -S -o arch/arm/kernel/asm-offsets.s arch/arm/kernel/asm-offsets.c' > arch/arm/kernel/.asm-offsets.s.tmp; rm -f arch/arm/kernel/.asm-offsets.s.d; mv -f arch/arm/kernel/.asm-offsets.s.tmp arch/arm/kernel/.asm-offsets.s.cmd;
+set -e; echo '  CHK     include/generated/asm-offsets.h'; mkdir -p include/generated/; 	(set -e; echo "#ifndef __ASM_OFFSETS_H__"; echo "#define __ASM_OFFSETS_H__"; echo "/*"; echo " * DO NOT MODIFY."; echo " *"; echo " * This file was generated by Kbuild"; echo " */"; echo ""; sed -ne 	's:^[[:space:]]*\.ascii[[:space:]]*"\(.*\)".*:\1:; /^->/{s:->#\(.*\):/* \1 */:; s:^->\([^ ]*\) [\$#]*\([^ ]*\) \(.*\):#define \1 \2 /* \3 */:; s:->::; p;}'; echo ""; echo "#endif" ) < arch/arm/kernel/asm-offsets.s > include/generated/asm-offsets.h.tmp; if [ -r include/generated/asm-offsets.h ] && cmp -s include/generated/asm-offsets.h include/generated/asm-offsets.h.tmp; then rm -f include/generated/asm-offsets.h.tmp; else echo '  UPD     include/generated/asm-offsets.h'; mv -f include/generated/asm-offsets.h.tmp include/generated/asm-offsets.h; fi
+echo '  CALL    scripts/checksyscalls.sh'; /bin/bash scripts/checksyscalls.sh arm-eabi-gcc -Wp,-MD,./.missing-syscalls.d -nostdinc -isystem /root/gcc-linaro-7.5.0-2019.12-x86_64_arm-eabi/bin/../lib/gcc/arm-eabi/7.5.0/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./drivers/misc/mediatek/include -I./include -I./drivers/misc/mediatek/include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1500 -fstack-protector-strong -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-merge-all-constants -fmerge-constants -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types    -DKBUILD_BASENAME='"missing_syscalls"'  -DKBUILD_MODNAME='"missing_syscalls"' 
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pinctrl
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/mediatek/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/realtek
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/b2c2
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/perf/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/platform
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/pci/pluto2/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/pt1
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/ralink/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/clkbuf_v1
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pinctrl/bcm
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/dvb-usb
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/blocktag/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/boot
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/tegra/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/txx9
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/realtek/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/rsi
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/usb/b2c2/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/dvb-usb-v2
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/pci/pt1/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/pt3
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/platform/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/power
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/usb/dvb-usb/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/clkbuf_v1/mt6761
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pinctrl/freescale
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/usb/dvb-usb-v2/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/s2255
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/pci/pt3/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/txx9/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/saa7146
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/ux500
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/boot/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/cm_mgr_v1
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/rsi/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/st
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/pinctrl/bcm/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pinctrl/mediatek
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/clkbuf_v1/mt6761/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/clkbuf_v1/mt6761/modules.builtin) > drivers/misc/mediatek/base/power/clkbuf_v1/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/cpufreq_v1
+make -f ./scripts/Makefile.modbuiltin obj=drivers/power/supply
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/pinctrl/freescale/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/ti
+(for m in ; do echo kernel/$m; done;	\
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/usb/s2255/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/siano
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/pci/saa7146/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/smipcie
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/cm_mgr_v1/mt6761
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/ux500/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/xtensa
+cat /dev/null ) > drivers/pinctrl/mediatek/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/st/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pwm
+make -f ./scripts/Makefile.modbuiltin obj=drivers/pinctrl/nomadik
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/ti/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/net/wireless/zydas
+make -f ./scripts/Makefile.modbuiltin obj=drivers/power/supply/mediatek
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/usb/siano/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/stkwebcam
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/cpufreq_v1/src
+set -e;  echo '  DTC     arch/arm/boot/dts/mt6761.dtb'; mkdir -p arch/arm/boot/dts/ ; arm-eabi-gcc -E -Wp,-MD,arch/arm/boot/dts/.mt6761.dtb.d.pre.tmp -nostdinc -I./arch/arm/boot/dts -I./arch/arm/boot/dts/include -I./drivers/of/testcase-data -I./include/ -Iarch/arm/boot/dts -undef -D__DTS__ -x assembler-with-cpp -o arch/arm/boot/dts/.mt6761.dtb.dts.tmp arch/arm/boot/dts/mt6761.dts ; ./scripts/dtc/dtc_overlay -@ -O dtb -o arch/arm/boot/dts/mt6761.dtb -b 0 -i arch/arm/boot/dts/ -Wno-unit_address_vs_reg -d arch/arm/boot/dts/.mt6761.dtb.d.dtc.tmp arch/arm/boot/dts/.mt6761.dtb.dts.tmp ; cat arch/arm/boot/dts/.mt6761.dtb.d.pre.tmp arch/arm/boot/dts/.mt6761.dtb.d.dtc.tmp > arch/arm/boot/dts/.mt6761.dtb.d; scripts/basic/fixdep arch/arm/boot/dts/.mt6761.dtb.d arch/arm/boot/dts/mt6761.dtb 'mkdir -p arch/arm/boot/dts/ ; arm-eabi-gcc -E -Wp,-MD,arch/arm/boot/dts/.mt6761.dtb.d.pre.tmp -nostdinc -I./arch/arm/boot/dts -I./arch/arm/boot/dts/include -I./drivers/of/testcase-data -I./include/ -Iarch/arm/boot/dts -undef -D__DTS__ -x assembler-with-cpp -o arch/arm/boot/dts/.mt6761.dtb.dts.tmp arch/arm/boot/dts/mt6761.dts ; ./scripts/dtc/dtc_overlay -@ -O dtb -o arch/arm/boot/dts/mt6761.dtb -b 0 -i arch/arm/boot/dts/ -Wno-unit_address_vs_reg -d arch/arm/boot/dts/.mt6761.dtb.d.dtc.tmp arch/arm/boot/dts/.mt6761.dtb.dts.tmp ; cat arch/arm/boot/dts/.mt6761.dtb.d.pre.tmp arch/arm/boot/dts/.mt6761.dtb.d.dtc.tmp > arch/arm/boot/dts/.mt6761.dtb.d' > arch/arm/boot/dts/.mt6761.dtb.tmp; rm -f arch/arm/boot/dts/.mt6761.dtb.d; mv -f arch/arm/boot/dts/.mt6761.dtb.tmp arch/arm/boot/dts/.mt6761.dtb.cmd;
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/pci/smipcie/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/pci/ttpci
+make -f ./scripts/Makefile.build obj=arch/arm/boot/dts MACHINE= arch/arm/boot/dts/x653c_h6114go.dtb
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/cm_mgr_v1/mt6761/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/cm_mgr_v1/mt6761/modules.builtin) > drivers/misc/mediatek/base/power/cm_mgr_v1/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/cpuidle_v3
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/xtensa/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=sound/soc/zte
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/pwm/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/pinctrl/nomadik/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/regulator
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/pinctrl/bcm/modules.builtin drivers/pinctrl/freescale/modules.builtin drivers/pinctrl/mediatek/modules.builtin drivers/pinctrl/nomadik/modules.builtin) > drivers/pinctrl/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/rtc
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/net/wireless/zydas/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/net/wireless/admtek/modules.builtin drivers/net/wireless/ath/modules.builtin drivers/net/wireless/atmel/modules.builtin drivers/net/wireless/broadcom/modules.builtin drivers/net/wireless/cisco/modules.builtin drivers/net/wireless/intel/modules.builtin drivers/net/wireless/intersil/modules.builtin drivers/net/wireless/marvell/modules.builtin drivers/net/wireless/mediatek/modules.builtin drivers/net/wireless/ralink/modules.builtin drivers/net/wireless/realtek/modules.builtin drivers/net/wireless/rsi/modules.builtin drivers/net/wireless/st/modules.builtin drivers/net/wireless/ti/modules.builtin drivers/net/wireless/zydas/modules.builtin) > drivers/net/wireless/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/cpufreq_v1/src/mach
+(for m in drivers/net/ifb.ko drivers/net/tun.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/net/ppp/modules.builtin drivers/net/slip/modules.builtin drivers/net/usb/modules.builtin drivers/net/wireless/modules.builtin) > drivers/net/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/cpuidle_v3/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/dcm_v1
+make -f ./scripts/Makefile.modbuiltin obj=drivers/scsi
+make -f ./scripts/Makefile.modbuiltin obj=drivers/power/supply/mediatek/charger
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/pci/ttpci/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > sound/soc/zte/modules.builtin
+:
+(for m in sound/soc/snd-soc-core.ko; do echo kernel/$m; done;	\
+cat /dev/null sound/soc/adi/modules.builtin sound/soc/amd/modules.builtin sound/soc/atmel/modules.builtin sound/soc/au1x/modules.builtin sound/soc/bcm/modules.builtin sound/soc/blackfin/modules.builtin sound/soc/cirrus/modules.builtin sound/soc/codecs/modules.builtin sound/soc/davinci/modules.builtin sound/soc/dwc/modules.builtin sound/soc/fsl/modules.builtin sound/soc/generic/modules.builtin sound/soc/img/modules.builtin sound/soc/intel/modules.builtin sound/soc/jz4740/modules.builtin sound/soc/kirkwood/modules.builtin sound/soc/mediatek/modules.builtin sound/soc/mxs/modules.builtin sound/soc/nuc900/modules.builtin sound/soc/omap/modules.builtin sound/soc/pxa/modules.builtin sound/soc/qcom/modules.builtin sound/soc/rockchip/modules.builtin sound/soc/samsung/modules.builtin sound/soc/sh/modules.builtin sound/soc/sirf/modules.builtin sound/soc/spear/modules.builtin sound/soc/sti/modules.builtin sound/soc/sunxi/modules.builtin sound/soc/tegra/modules.builtin sound/soc/txx9/modules.builtin sound/soc/ux500/modules.builtin sound/soc/xtensa/modules.builtin sound/soc/zte/modules.builtin) > sound/soc/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/usb/stkwebcam/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/ttusb-budget
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/media/pci/b2c2/modules.builtin drivers/media/pci/ddbridge/modules.builtin drivers/media/pci/dm1105/modules.builtin drivers/media/pci/mantis/modules.builtin drivers/media/pci/netup_unidvb/modules.builtin drivers/media/pci/ngene/modules.builtin drivers/media/pci/pluto2/modules.builtin drivers/media/pci/pt1/modules.builtin drivers/media/pci/pt3/modules.builtin drivers/media/pci/saa7146/modules.builtin drivers/media/pci/smipcie/modules.builtin drivers/media/pci/ttpci/modules.builtin) > drivers/media/pci/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/boot_reason
+(for m in sound/soundcore.ko; do echo kernel/$m; done;	\
+cat /dev/null sound/arm/modules.builtin sound/atmel/modules.builtin sound/core/modules.builtin sound/drivers/modules.builtin sound/firewire/modules.builtin sound/hda/modules.builtin sound/i2c/modules.builtin sound/isa/modules.builtin sound/mips/modules.builtin sound/oss/modules.builtin sound/parisc/modules.builtin sound/pci/modules.builtin sound/pcmcia/modules.builtin sound/ppc/modules.builtin sound/sh/modules.builtin sound/soc/modules.builtin sound/sparc/modules.builtin sound/spi/modules.builtin sound/synth/modules.builtin sound/usb/modules.builtin) > sound/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/ttusb-dec
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/regulator/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/dcm_v1/mt6761
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/rtc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/btif
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/cpufreq_v1/src/mach/mt6761
+make -f ./scripts/Makefile.modbuiltin obj=drivers/scsi/arm
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/usb/ttusb-budget/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/spi
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/boot_reason/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/c2k_usb
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/power/supply/mediatek/charger/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/power/supply/mediatek/misc
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/usb/ttusb-dec/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc/bcm
+make -f ./scripts/Makefile.modbuiltin obj=drivers/media/usb/zr364xx
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/dcm_v1/mt6761/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/btif/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/dcm_v1/mt6761/modules.builtin) > drivers/misc/mediatek/base/power/dcm_v1/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/eem_v2
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cam_cal/src
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/cpufreq_v1/src/mach/mt6761/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/scsi/arm/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/c2k_usb/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cameraisp
+(for m in drivers/scsi/scsi_mod.ko drivers/scsi/sd_mod.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/scsi/arm/modules.builtin) > drivers/scsi/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/cpufreq_v1/src/mach/mt6761/modules.builtin) > drivers/misc/mediatek/base/power/cpufreq_v1/src/mach/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/cpufreq_v1/src/mach/modules.builtin) > drivers/misc/mediatek/base/power/cpufreq_v1/src/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/cpufreq_v1/src/modules.builtin) > drivers/misc/mediatek/base/power/cpufreq_v1/modules.builtin
+:
+(for m in drivers/spi/spi-mt65xx.ko drivers/spi/spi-mt65xx-dev.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/spi/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/hps_v3
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/media/usb/zr364xx/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/media/usb/b2c2/modules.builtin drivers/media/usb/dvb-usb/modules.builtin drivers/media/usb/dvb-usb-v2/modules.builtin drivers/media/usb/s2255/modules.builtin drivers/media/usb/siano/modules.builtin drivers/media/usb/stkwebcam/modules.builtin drivers/media/usb/ttusb-budget/modules.builtin drivers/media/usb/ttusb-dec/modules.builtin drivers/media/usb/zr364xx/modules.builtin) > drivers/media/usb/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/media/common/modules.builtin drivers/media/firewire/modules.builtin drivers/media/i2c/modules.builtin drivers/media/mmc/modules.builtin drivers/media/pci/modules.builtin drivers/media/platform/modules.builtin drivers/media/rc/modules.builtin drivers/media/spi/modules.builtin drivers/media/tuners/modules.builtin drivers/media/usb/modules.builtin) > drivers/media/modules.builtin
+make -f ./scripts/Makefile.modbuiltin obj=drivers/thermal
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/power/supply/mediatek/misc/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/power/supply/mediatek/charger/modules.builtin drivers/power/supply/mediatek/misc/modules.builtin) > drivers/power/supply/mediatek/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/power/supply/mediatek/modules.builtin) > drivers/power/supply/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/soc/bcm/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc/fsl
+make -f ./scripts/Makefile.modbuiltin obj=drivers/tty
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/power/supply/modules.builtin) > drivers/power/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/eem_v2/mt6761
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cameraisp/dip
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/cam_cal/src/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/ccci_util
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/leakage_table_v2
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/android
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/android/ion
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/android/ion/mtk
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/hps_v3/modules.builtin
+(for m in drivers/staging/android/ion/mtk/ion_drv.ko drivers/staging/android/ion/mtk/ion_mm_heap.ko drivers/staging/android/ion/mtk/ion_fb_heap.ko drivers/staging/android/ion/mtk/ion_sec_heap.ko drivers/staging/android/ion/mtk/ion_profile.ko drivers/staging/android/ion/mtk/ion_history.ko drivers/staging/android/ion/mtk/ion_comm.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/android/ion/mtk/modules.builtin
+:
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/mcdi
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/staging/android/ion/mtk/modules.builtin) > drivers/staging/android/ion/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/staging/android/ion/modules.builtin) > drivers/staging/android/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/thermal/samsung
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/mcdi/mcdi_v1
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/iio
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/soc/fsl/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/soc/mediatek
+make -f ./scripts/Makefile.modbuiltin obj=drivers/tty/ipwireless
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/thermal/samsung/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/common
+(for m in drivers/thermal/thermal_sys.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/thermal/samsung/modules.builtin) > drivers/thermal/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/tty/ipwireless/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video
+make -f ./scripts/Makefile.modbuiltin obj=drivers/tty/serial
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/cameraisp/dip/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cameraisp/dpe
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/leakage_table_v2/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/mdpm_v1
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/backlight
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/eem_v2/mt6761/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/eem_v2/mt6761/modules.builtin) > drivers/misc/mediatek/base/power/eem_v2/modules.builtin
+:
+(for m in drivers/usb/common/usb-common.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/usb/common/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/core
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/ccci_util/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/ccmni
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/fbdev
+.
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/cameraisp/dpe/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cameraisp/fdvt
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/video/backlight/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/mdpm_v1/mt6761
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/soc/mediatek/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/mt6761
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/soc/bcm/modules.builtin drivers/soc/fsl/modules.builtin drivers/soc/mediatek/modules.builtin) > drivers/soc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/watchdog
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/iio/accel
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/mcdi/mcdi_v1/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/mcdi/mt6761
+make -f ./scripts/Makefile.modbuiltin obj=drivers/tty/serial/8250
+make -f ./scripts/Makefile.modbuiltin obj=drivers/watchdog/mediatek
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/mdpm_v1/mt6761/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/mt6761/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/mdpm_v1/mt6761/modules.builtin) > drivers/misc/mediatek/base/power/mdpm_v1/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/gadget
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/media
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/iio/accel/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/watchdog/mediatek/wdk
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/iio/adc
+FDVT: Drv use 3.5 folder
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cameraisp/fdvt/3.5
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/ccmni/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/watchdog/mediatek/wdt
+(for m in drivers/usb/core/usbcore.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/usb/core/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/misc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/fbdev/core
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/mcdi/mt6761/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/mcdi/mcdi_v1/modules.builtin drivers/misc/mediatek/base/power/mcdi/mt6761/modules.builtin) > drivers/misc/mediatek/base/power/mcdi/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/pbm_v4
+(for m in drivers/watchdog/mediatek/wdk/wd_common_drv.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/watchdog/mediatek/wdk/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/fbdev/omap2
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/gadget/function
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/iio/adc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/iio/addac
+make -f ./scripts/Makefile.modbuiltin obj=drivers/watchdog/mediatek/wdt/common
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/media/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/nanohub
+(for m in drivers/video/fbdev/core/fb.ko drivers/video/fbdev/core/cfbfillrect.ko drivers/video/fbdev/core/cfbcopyarea.ko drivers/video/fbdev/core/cfbimgblt.ko drivers/video/fbdev/core/sysfillrect.ko drivers/video/fbdev/core/syscopyarea.ko drivers/video/fbdev/core/sysimgblt.ko drivers/video/fbdev/core/fb_sys_fops.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/video/fbdev/core/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/tty/vt
+(for m in drivers/tty/serial/8250/8250.ko drivers/tty/serial/8250/8250_base.ko drivers/tty/serial/8250/8250_mtk.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/tty/serial/8250/modules.builtin
+:
+(for m in drivers/tty/serial/serial_core.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/tty/serial/8250/modules.builtin) > drivers/tty/serial/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/logo
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/fbdev/omap2/omapfb
+(for m in drivers/usb/misc/trancevibrator.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/usb/misc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/phy
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/cameraisp/fdvt/3.5/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/watchdog/mediatek/wdt/common/wdt_v2
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/cameraisp/fdvt/3.5/modules.builtin) > drivers/misc/mediatek/cameraisp/fdvt/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/tty/vt/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cameraisp/mfb
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/tty/ipwireless/modules.builtin drivers/tty/serial/modules.builtin drivers/tty/vt/modules.builtin) > drivers/tty/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/chip
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/iio/addac/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/fbdev/omap2/omapfb/displays
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/iio/cdc
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/pbm_v4/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/power_gs_v1
+(for m in drivers/staging/nanohub/nanohub.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/nanohub/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/chip/mt6761
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cirq
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/watchdog/mediatek/wdt/common/wdt_v2/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/watchdog/mediatek/wdt/common/wdt_v2/modules.builtin) > drivers/watchdog/mediatek/wdt/common/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/watchdog/mediatek/wdt/common/modules.builtin) > drivers/watchdog/mediatek/wdt/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/watchdog/mediatek/wdk/modules.builtin drivers/watchdog/mediatek/wdt/modules.builtin) > drivers/watchdog/mediatek/modules.builtin
+:
+(for m in drivers/usb/gadget/function/usb_f_acm.ko drivers/usb/gadget/function/u_serial.ko drivers/usb/gadget/function/usb_f_serial.ko drivers/usb/gadget/function/u_ether.ko drivers/usb/gadget/function/usb_f_rndis.ko drivers/usb/gadget/function/usb_f_mass_storage.ko drivers/usb/gadget/function/usb_f_fs.ko drivers/usb/gadget/function/usb_f_midi.ko drivers/usb/gadget/function/usb_f_hid.ko drivers/usb/gadget/function/usb_f_mtp.ko drivers/usb/gadget/function/usb_f_ptp.ko drivers/usb/gadget/function/usb_f_audio_source.ko drivers/usb/gadget/function/usb_f_accessory.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/usb/gadget/function/modules.builtin
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/watchdog/mediatek/modules.builtin) > drivers/watchdog/modules.builtin
+:
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/gadget/legacy
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/storage
+.
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/video/logo/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/iio/frequency
+(for m in drivers/usb/phy/phy-generic.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/usb/phy/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cameraisp/rsc
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/power_gs_v1/mt6761
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/video/fbdev/omap2/omapfb/displays/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/video/fbdev/omap2/omapfb/dss
+(for m in drivers/usb/storage/usb-storage.ko drivers/usb/storage/ums-alauda.ko drivers/usb/storage/ums-cypress.ko drivers/usb/storage/ums-datafab.ko drivers/usb/storage/ums-freecom.ko drivers/usb/storage/ums-isd200.ko drivers/usb/storage/ums-jumpshot.ko drivers/usb/storage/ums-karma.ko drivers/usb/storage/ums-onetouch.ko drivers/usb/storage/ums-sddr09.ko drivers/usb/storage/ums-sddr55.ko drivers/usb/storage/ums-usbat.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/usb/storage/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/ppm_v3
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/video/fbdev/omap2/omapfb/dss/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/video/fbdev/omap2/omapfb/displays/modules.builtin drivers/video/fbdev/omap2/omapfb/dss/modules.builtin) > drivers/video/fbdev/omap2/omapfb/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/ppm_v3/src
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/cameraisp/mfb/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cameraisp/src
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/video/fbdev/omap2/omapfb/modules.builtin) > drivers/video/fbdev/omap2/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/video/fbdev/core/modules.builtin drivers/video/fbdev/omap2/modules.builtin) > drivers/video/fbdev/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/video/backlight/modules.builtin drivers/video/fbdev/modules.builtin drivers/video/logo/modules.builtin) > drivers/video/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/ppm_v3/src/mach
+make -f ./scripts/Makefile.modbuiltin obj=drivers/usb/gadget/udc
+.
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/cirq/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cmdq
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cameraisp/src/mt6761
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/iio/cdc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/iio/gyro
+(for m in drivers/usb/gadget/udc/udc-core.ko; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/usb/gadget/udc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/spm
+cameraisp drv by platform 
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/usb/gadget/legacy/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cameraisp/tsf
+(for m in drivers/usb/gadget/libcomposite.ko; do echo kernel/$m; done;	\
+cat /dev/null drivers/usb/gadget/function/modules.builtin drivers/usb/gadget/legacy/modules.builtin drivers/usb/gadget/udc/modules.builtin) > drivers/usb/gadget/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/cameraisp/src/mt6761/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/cameraisp/src/mt6761/modules.builtin) > drivers/misc/mediatek/cameraisp/src/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/usb/common/modules.builtin drivers/usb/core/modules.builtin drivers/usb/gadget/modules.builtin drivers/usb/misc/modules.builtin drivers/usb/phy/modules.builtin drivers/usb/storage/modules.builtin) > drivers/usb/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/iio/frequency/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/iio/impedance-analyzer
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cameraisp/wpe
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/udi_v1
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/cameraisp/rsc/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/iio/light
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/spm/common
+.
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/cameraisp/tsf/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/spm/mt6761
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/power_gs_v1/mt6761/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/iio/impedance-analyzer/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/spm/mt6761/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/upower_v2
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/iio/meter
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/power_gs_v1/mt6761/modules.builtin) > drivers/misc/mediatek/base/power/power_gs_v1/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/iio/resolver
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/upower_v2/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/staging/iio/trigger
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/base/power/ppm_v3/src/mach/mt6761
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/iio/gyro/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cmdq/mdp_sync
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/iio/resolver/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/iio/meter/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cmdq/v3
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/udi_v1/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/cameraisp/wpe/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/cameraisp/dip/modules.builtin drivers/misc/mediatek/cameraisp/dpe/modules.builtin drivers/misc/mediatek/cameraisp/fdvt/modules.builtin drivers/misc/mediatek/cameraisp/mfb/modules.builtin drivers/misc/mediatek/cameraisp/rsc/modules.builtin drivers/misc/mediatek/cameraisp/src/modules.builtin drivers/misc/mediatek/cameraisp/tsf/modules.builtin drivers/misc/mediatek/cameraisp/wpe/modules.builtin) > drivers/misc/mediatek/cameraisp/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/spm/common/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/iio/light/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/spm/common/modules.builtin drivers/misc/mediatek/base/power/spm/mt6761/modules.builtin) > drivers/misc/mediatek/base/power/spm/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/cmdq/mdp_sync/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/staging/iio/trigger/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/base/power/ppm_v3/src/mach/mt6761/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/ppm_v3/src/mach/mt6761/modules.builtin) > drivers/misc/mediatek/base/power/ppm_v3/src/mach/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/ppm_v3/src/mach/modules.builtin) > drivers/misc/mediatek/base/power/ppm_v3/src/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/ppm_v3/src/modules.builtin) > drivers/misc/mediatek/base/power/ppm_v3/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/staging/iio/accel/modules.builtin drivers/staging/iio/adc/modules.builtin drivers/staging/iio/addac/modules.builtin drivers/staging/iio/cdc/modules.builtin drivers/staging/iio/frequency/modules.builtin drivers/staging/iio/gyro/modules.builtin drivers/staging/iio/impedance-analyzer/modules.builtin drivers/staging/iio/light/modules.builtin drivers/staging/iio/meter/modules.builtin drivers/staging/iio/resolver/modules.builtin drivers/staging/iio/trigger/modules.builtin) > drivers/staging/iio/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/clkbuf_v1/modules.builtin drivers/misc/mediatek/base/power/cm_mgr_v1/modules.builtin drivers/misc/mediatek/base/power/cpufreq_v1/modules.builtin drivers/misc/mediatek/base/power/cpuidle_v3/modules.builtin drivers/misc/mediatek/base/power/dcm_v1/modules.builtin drivers/misc/mediatek/base/power/eem_v2/modules.builtin drivers/misc/mediatek/base/power/hps_v3/modules.builtin drivers/misc/mediatek/base/power/leakage_table_v2/modules.builtin drivers/misc/mediatek/base/power/mcdi/modules.builtin drivers/misc/mediatek/base/power/mdpm_v1/modules.builtin drivers/misc/mediatek/base/power/mt6761/modules.builtin drivers/misc/mediatek/base/power/pbm_v4/modules.builtin drivers/misc/mediatek/base/power/power_gs_v1/modules.builtin drivers/misc/mediatek/base/power/ppm_v3/modules.builtin drivers/misc/mediatek/base/power/spm/modules.builtin drivers/misc/mediatek/base/power/udi_v1/modules.builtin drivers/misc/mediatek/base/power/upower_v2/modules.builtin) > drivers/misc/mediatek/base/power/modules.builtin
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/staging/android/modules.builtin drivers/staging/iio/modules.builtin drivers/staging/media/modules.builtin drivers/staging/nanohub/modules.builtin) > drivers/staging/modules.builtin
+:
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/base/power/modules.builtin) > drivers/misc/mediatek/base/modules.builtin
+:
+make -f ./scripts/Makefile.modbuiltin obj=drivers/misc/mediatek/cmdq/v3/mt6765
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null ) > drivers/misc/mediatek/cmdq/v3/mt6765/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/cmdq/v3/mt6765/modules.builtin) > drivers/misc/mediatek/cmdq/v3/modules.builtin
+:
+(for m in ; do echo kernel/$m; done;	\
+cat /dev/null drivers/misc/mediatek/cmdq/mdp_sync/modules.builtin drivers/misc/mediatek/cmdq/v3/modules.builtin) > drivers/misc/mediatek/cmdq/modules.builtin
+:

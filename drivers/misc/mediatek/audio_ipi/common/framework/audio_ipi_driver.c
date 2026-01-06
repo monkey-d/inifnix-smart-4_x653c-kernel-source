@@ -50,10 +50,10 @@
 
 #include "audio_task_manager.h"
 
-#include <audio_ipi_dma.h>
-#include <audio_ipi_platform.h>
+#include "audio_ipi_dma.h"
+#include "audio_ipi_platform.h"
 
-#include <adsp_ipi_queue.h>
+#include "adsp_ipi_queue.h"
 
 
 #ifdef CONFIG_MTK_AURISYS_PHONE_CALL_SUPPORT

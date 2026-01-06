@@ -17,7 +17,7 @@
 
 
 
-#include <mali_kbase.h>
+#include "mali_kbase.h"
 
 #if defined(CONFIG_DMA_SHARED_BUFFER)
 #include <linux/dma-buf.h>
@@ -29,9 +29,9 @@
 #include <linux/syscalls.h>
 #include "mali_kbase_sync.h"
 #endif
-#include <mali_base_kernel.h>
-#include <mali_kbase_hwaccess_time.h>
-#include <mali_kbase_mem_linux.h>
+#include "mali_base_kernel.h"
+#include "mali_kbase_hwaccess_time.h"
+#include "mali_kbase_mem_linux.h"
 #include <linux/version.h>
 #include <linux/ktime.h>
 #include <linux/pfn.h>
