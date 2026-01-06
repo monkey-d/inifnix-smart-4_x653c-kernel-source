@@ -473,7 +473,7 @@ int tpd_driver_add(struct tpd_driver_t *tpd_drv)
 	/* check parameter */
 	if (tpd_drv == NULL)
 		return -1;
-	tpd_drv->tpd_have_button = tpd_dts_data.use_tpd_button;
+	tpd_drv->tpd_have_button = 0;
 	/* R-touch */
 	if (strcmp(tpd_drv->tpd_device_name, "generic") == 0) {
 		tpd_driver_list[0].tpd_device_name = tpd_drv->tpd_device_name;
