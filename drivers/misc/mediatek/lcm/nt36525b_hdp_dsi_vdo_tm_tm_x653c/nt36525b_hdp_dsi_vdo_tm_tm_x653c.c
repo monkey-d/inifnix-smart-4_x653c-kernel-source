@@ -130,8 +130,6 @@ static void lcm_get_params(struct LCM_PARAMS *params) {
     // Force DSI clock to run continuously. 
     // This allows the encoder to grab frames even if the panel is idle.
     params->dsi.cont_clock = 1; 
-    params->dsi.non_cont_clock = 0;
-    params->dsi.non_cont_clock_period = 0;
     
     // --- PMIC / STABILITY FIXES ---
     // Ensure ESD checking is enabled in the parameters (even if callback is simple)
@@ -192,3 +190,4 @@ struct LCM_DRIVER nt36525b_hdp_dsi_vdo_tm_tm_x653c_lcm_drv = {
     .compare_id = lcm_compare_id,
 
 };
+
