@@ -473,7 +473,7 @@ int tpd_driver_add(struct tpd_driver_t *tpd_drv)
 	/* check parameter */
 	if (tpd_drv == NULL)
 		return -1;
-	tpd_drv->tpd_have_button = 0;
+	tpd_drv->tpd_have_button = tpd_dts_data.use_tpd_button;
 	/* R-touch */
 	if (strcmp(tpd_drv->tpd_device_name, "generic") == 0) {
 		tpd_driver_list[0].tpd_device_name = tpd_drv->tpd_device_name;
@@ -567,9 +567,8 @@ static int tpd_probe(struct platform_device *pdev)
 		|| strncmp(CONFIG_MTK_LCM_PHYSICAL_ROTATION, "270", 3) == 0) {
 #ifdef CONFIG_MTK_FB
 /*Fix build errors,as some projects  cannot support these apis while bring up*/
-		TPD_RES_X = 720;
-		TPD_RES_Y = 1600;
-		printk("TPD: Forced resolution to %lu x %lu\n", TPD_RES_X, TPD_RES_Y);
+		TPD_RES_Y = DISP_GetScreenWidth();
+		TPD_RES_X = DISP_GetScreenHeight();
 #endif
 	} else
     #endif
