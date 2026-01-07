@@ -1,13 +1,11 @@
 name: Manual Kernel Build (ARM 32-bit)
 
 on:
-  # This enables the manual trigger button
   workflow_dispatch:
     inputs:
       defconfig_name:
         description: 'Name of the defconfig file (inside arch/arm/configs/)'
         required: true
-        # Replace this default with your actual config name if different
         default: 'x653c_defconfig' 
 
 jobs:
@@ -22,7 +20,7 @@ jobs:
         repository: monkey-d/inifnix-smart-4_x653c-kernel-source
         path: kernel_source
 
-    # 2. Install dependencies required for Kernel 4.9 on Ubuntu 22.04
+    # 2. Install dependencies
     - name: Install Build Tools
       run: |
         sudo apt-get update
@@ -31,21 +29,17 @@ jobs:
           git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev \
           lib32z1-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev \
           libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool \
-          squashfs-tools xsltproc zip zlib1g-dev \
-           python3
-        
-    
-# 3. Download and Setup GCC 4.9 Toolchain (Using Git Clone)
+          squashfs-tools xsltproc zip zlib1g-dev python3 device-tree-compiler
+
+    # 3. Download and Setup GCC 4.9 Toolchain
     - name: Setup GCC 4.9 (ARM-EABI)
       run: |
         echo "Cloning Toolchain..."
-        # Using LineageOS mirror for stability (Prebuilt GCC 4.9 ARM-EABI)
         git clone https://github.com/burstlam/arm-eabi-4.9.git toolchain
-        
-        # Add toolchain bin to GITHUB_PATH so following steps can use it
         echo "$GITHUB_WORKSPACE/toolchain/bin" >> $GITHUB_PATH
-    # 4. Compile the Kernel
-    - name: Build zImage-dtb
+
+    # 4. Compile the Kernel, DTBs, and DTBO
+    - name: Build Kernel and Device Trees
       working-directory: kernel_source
       env:
         ARCH: arm
@@ -61,24 +55,44 @@ jobs:
         make ${{ github.event.inputs.defconfig_name }}
         
         echo "Starting Build..."
-        # -j$(nproc) uses all available CPU cores
-        make -j$(nproc --all) zImage-dtb
+        # Build zImage-dtb AND dtbs (Device Tree Blobs)
+        # Note: On many MTK kernels, 'dtboimage' is a separate target. 
+        # We try to build it; if the target doesn't exist, '|| true' prevents the workflow from failing.
+        make -j$(nproc --all) zImage-dtb dtbs
+        make -j$(nproc --all) dtboimage || true
 
-    # 5. Verify the file exists before uploading
-    - name: Check Output
+    # 5. Gather all important files into one output folder
+    - name: Organize Artifacts
       working-directory: kernel_source
       run: |
-        if [ -f "arch/arm/boot/zImage-dtb" ]; then
-          echo "Build Success! zImage-dtb found."
-          ls -lh arch/arm/boot/zImage-dtb
-        else
-          echo "Error: zImage-dtb not found!"
-          exit 1
-        fi
+        mkdir -p build_artifacts
+        
+        echo "Copying Kernel Images..."
+        # Copy zImage-dtb if it exists
+        [ -f arch/arm/boot/zImage-dtb ] && cp arch/arm/boot/zImage-dtb build_artifacts/
+        # Copy standard zImage
+        [ -f arch/arm/boot/zImage ] && cp arch/arm/boot/zImage build_artifacts/
+        
+        echo "Copying Device Tree Blobs (dtb)..."
+        # Copy all compiled .dtb files
+        find arch/arm/boot/dts -name "*.dtb" -exec cp {} build_artifacts/ \;
+        
+        echo "Copying DTBO image..."
+        # Find and copy dtbo.img (location varies by kernel version, using find to be safe)
+        find . -name "dtbo.img" -exec cp {} build_artifacts/ \;
+        
+        echo "Copying Debugging Info..."
+        # Copy config and System.map for debugging purposes
+        cp .config build_artifacts/build_config
+        [ -f System.map ] && cp System.map build_artifacts/
+        [ -f Module.symvers ] && cp Module.symvers build_artifacts/
+
+        echo "Listing Artifacts:"
+        ls -lh build_artifacts/
 
     # 6. Upload the result
-    - name: Upload Artifact
+    - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: zImage-dtb
-        path: kernel_source/arch/arm/boot/zImage-dtb
+        name: kernel-build-output
+        path: kernel_source/build_artifacts/*
