@@ -158,26 +158,10 @@ static void lcm_resume(void) {
 }
 
 // Add this function before the LCM_DRIVER struct
-static int lcm_compare_id(void)
+// Simplified Check ID to fix build errors
+static void lcm_compare_id(void)
 {
-    unsigned char buffer[4] = {0};
-    unsigned int array[16];
-
-    // Read ID from Register 0x04 (Manufacturer ID) or 0xDA/0xDB
-    // 0x04 is standard for Novatek: returns ID1, ID2, ID3
-    array[0] = 0x00043700; // Read 4 bytes from 0x04
-    dsi_set_cmdq(array, 1, 1);
     
-    // Read 3 bytes back
-    lcm_util.dsi_read_cmd_dts(0x04, 3, buffer);
-
-    // Debug log to see what your ID actually is (Check dmesg!)
-    LCM_LOG("Check ID: 0x%02x 0x%02x 0x%02x\n", buffer[0], buffer[1], buffer[2]);
-
-    // NT36525 usually returns 0x36 0x52 0x5B or similar.
-    // If you don't know the ID yet, return 1 to force it to load, 
-    // then check dmesg logs later to set the correct values.
-    return 1; 
 }
 
 struct LCM_DRIVER nt36525b_hdp_dsi_vdo_tm_tm_x653c_lcm_drv = {
@@ -190,4 +174,5 @@ struct LCM_DRIVER nt36525b_hdp_dsi_vdo_tm_tm_x653c_lcm_drv = {
     .compare_id = lcm_compare_id,
 
 };
+
 
