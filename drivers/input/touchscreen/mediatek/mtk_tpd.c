@@ -189,34 +189,24 @@ int tpd_get_gpio_info(struct platform_device *pdev)
 	if (IS_ERR(pinctrl1)) {
 		ret = PTR_ERR(pinctrl1);
 		dev_info(&pdev->dev, "fwq Cannot find pinctrl1!\n");
-		//return ret;
-		pinctrl1 = NULL;
+		return ret;
 	}
-
-if (pinctrl1) {
 	pins_default = pinctrl_lookup_state(pinctrl1, "default");
 	if (IS_ERR(pins_default)) {
 		ret = PTR_ERR(pins_default);
 		TPD_DMESG("Cannot find pinctrl default %d!\n", ret);
 	}
-	}
-
-
-	if (pinctrl1) {
 	eint_as_int = pinctrl_lookup_state(pinctrl1, "state_eint_as_int");
 	if (IS_ERR(eint_as_int)) {
 		ret = PTR_ERR(eint_as_int);
 		TPD_DMESG("Cannot find pinctrl state_eint_as_int!\n");
-		//return ret;
+		return ret;
 	}
-	}
-		if (pinctrl1) {
 	eint_output0 = pinctrl_lookup_state(pinctrl1, "state_eint_output0");
 	if (IS_ERR(eint_output0)) {
 		ret = PTR_ERR(eint_output0);
 		TPD_DMESG("Cannot find pinctrl state_eint_output0!\n");
-		//return ret;
-	}
+		return ret;
 	}
 	eint_output1 = pinctrl_lookup_state(pinctrl1, "state_eint_output1");
 	if (IS_ERR(eint_output1)) {
@@ -537,8 +527,10 @@ static void tpd_create_attributes(struct device *dev, struct tpd_attrs *attrs)
 {
 	int num = attrs->num;
 
-	for (; num > 0;)
-		device_create_file(dev, attrs->attr[--num]);
+	for (; num > 0;) {
+		if (device_create_file(dev, attrs->attr[--num]))
+			pr_info("mtk_tpd: tpd create attributes file failed\n");
+	}
 }
 
 /* touch panel probe */
