@@ -2168,10 +2168,10 @@
 		cap_touch@62 {
 			compatible = "mediatek,cap_touch";
 			reg = <0x62>;
-			interrupt-parent = <&pio>;
+			interrupt-parent = <&{/pinctrl@1000b000}>;
 			interrupts = <4 2 4 0>; /* GPIO 4, Falling Edge */
-			rst-gpio = <&pio 174 0>;
-			int-gpio = <&pio 4 0>;
+rst-gpio = <&{/pinctrl@1000b000} 174 0>;
+int-gpio = <&{/pinctrl@1000b000} 4 0>;
 			status = "okay";
 		};
 	};
