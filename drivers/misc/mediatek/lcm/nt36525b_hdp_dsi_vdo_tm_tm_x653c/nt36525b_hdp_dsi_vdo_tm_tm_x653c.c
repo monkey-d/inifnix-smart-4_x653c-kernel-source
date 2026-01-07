@@ -159,9 +159,9 @@ static void lcm_resume(void) {
 
 // Add this function before the LCM_DRIVER struct
 // Simplified Check ID to fix build errors
-static void lcm_compare_id(void)
+static int lcm_compare_id(void)
 {
-    
+    return 1;
 }
 
 struct LCM_DRIVER nt36525b_hdp_dsi_vdo_tm_tm_x653c_lcm_drv = {
@@ -174,5 +174,6 @@ struct LCM_DRIVER nt36525b_hdp_dsi_vdo_tm_tm_x653c_lcm_drv = {
     .compare_id = lcm_compare_id,
 
 };
+
 
 
