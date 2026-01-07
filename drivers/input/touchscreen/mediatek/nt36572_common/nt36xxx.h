@@ -53,7 +53,7 @@
 #define TOUCH_DEFAULT_MAX_WIDTH 720
 #define TOUCH_DEFAULT_MAX_HEIGHT 1600
 #define TOUCH_MAX_FINGER_NUM 10
-#define TOUCH_KEY_NUM 3
+#define TOUCH_KEY_NUM 0
 #if TOUCH_KEY_NUM > 0
 extern const uint16_t touch_key_array[TOUCH_KEY_NUM];
 #endif
