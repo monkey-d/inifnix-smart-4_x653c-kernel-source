@@ -658,14 +658,6 @@ info_retry:
 	ts->abs_y_max = (uint16_t)((buf[7] << 8) | buf[8]);
 	ts->max_button_num = buf[11];
 
-	/* Override incorrect firmware resolution (720x1536 -> 720x1600) */
-	if (ts->abs_x_max == TOUCH_DEFAULT_MAX_WIDTH && ts->abs_y_max == TOUCH_FIRMWARE_INCORRECT_HEIGHT) {
-		NVT_LOG("Overriding firmware resolution from %dx%d to %dx%d\n",
-			TOUCH_DEFAULT_MAX_WIDTH, TOUCH_FIRMWARE_INCORRECT_HEIGHT,
-			TOUCH_DEFAULT_MAX_WIDTH, TOUCH_DEFAULT_MAX_HEIGHT);
-		ts->abs_y_max = TOUCH_DEFAULT_MAX_HEIGHT;
-	}
-
 	//---clear x_num, y_num if fw info is broken---
 	if ((buf[1] + buf[2]) != 0xFF) {
 		NVT_ERR("FW info is broken! fw_ver=0x%02X, ~fw_ver=0x%02X\n", buf[1], buf[2]);
@@ -1409,8 +1401,7 @@ static int8_t nvt_ts_check_chip_ver_trim(void)
 			nvt_stop_crc_reboot();
 		}
 
-		/* Increase delay between retries to allow chip to stabilize */
-		msleep(50);
+		msleep(10);
 	}
 
 out:
@@ -1455,9 +1446,8 @@ static int32_t nvt_ts_probe(struct i2c_client *client, const struct i2c_device_i
 		goto err_check_functionality_failed;
 	}
 
-	/* need delay after POR(power on reset) to ensure touch controller is ready */
-	/* Increased from 10ms to 100ms to allow proper firmware boot */
-	msleep(100);
+	// need 10ms delay after POR(power on reset)
+	msleep(10);
 
 	//---check input device---
 	if (tpd->dev == NULL) {
@@ -1505,19 +1495,11 @@ static int32_t nvt_ts_probe(struct i2c_client *client, const struct i2c_device_i
 
 	mutex_init(&ts->lock);
 
-	NVT_LOG("Starting bootloader reset and firmware initialization\n");
 	mutex_lock(&ts->lock);
 	nvt_bootloader_reset();
-	ret = nvt_check_fw_reset_state(RESET_STATE_INIT);
-	if (ret) {
-		NVT_ERR("Failed to check firmware reset state, continuing with defaults\n");
-	}
-	ret = nvt_get_fw_info();
-	if (ret) {
-		NVT_ERR("Failed to get firmware info, using default parameters\n");
-	}
+	nvt_check_fw_reset_state(RESET_STATE_INIT);
+	nvt_get_fw_info();
 	mutex_unlock(&ts->lock);
-	NVT_LOG("Bootloader reset and firmware initialization complete\n");
 
 	thread = kthread_run(touch_event_handler, 0, TPD_DEVICE);
 	if (IS_ERR(thread))
