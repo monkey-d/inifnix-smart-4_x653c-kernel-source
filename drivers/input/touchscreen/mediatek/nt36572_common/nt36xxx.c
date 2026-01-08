@@ -1407,7 +1407,8 @@ static int8_t nvt_ts_check_chip_ver_trim(void)
 			nvt_stop_crc_reboot();
 		}
 
-		msleep(10);
+		// Increase delay between retries to allow chip to stabilize
+		msleep(50);
 	}
 
 out:
@@ -1452,8 +1453,9 @@ static int32_t nvt_ts_probe(struct i2c_client *client, const struct i2c_device_i
 		goto err_check_functionality_failed;
 	}
 
-	// need 10ms delay after POR(power on reset)
-	msleep(10);
+	// need delay after POR(power on reset) to ensure touch controller is ready
+	// Increased from 10ms to 100ms to allow proper firmware boot
+	msleep(100);
 
 	//---check input device---
 	if (tpd->dev == NULL) {
@@ -1501,11 +1503,19 @@ static int32_t nvt_ts_probe(struct i2c_client *client, const struct i2c_device_i
 
 	mutex_init(&ts->lock);
 
+	NVT_LOG("Starting bootloader reset and firmware initialization\n");
 	mutex_lock(&ts->lock);
 	nvt_bootloader_reset();
-	nvt_check_fw_reset_state(RESET_STATE_INIT);
-	nvt_get_fw_info();
+	ret = nvt_check_fw_reset_state(RESET_STATE_INIT);
+	if (ret) {
+		NVT_ERR("Failed to check firmware reset state\n");
+	}
+	ret = nvt_get_fw_info();
+	if (ret) {
+		NVT_ERR("Failed to get firmware info\n");
+	}
 	mutex_unlock(&ts->lock);
+	NVT_LOG("Bootloader reset and firmware initialization complete\n");
 
 	thread = kthread_run(touch_event_handler, 0, TPD_DEVICE);
 	if (IS_ERR(thread))
