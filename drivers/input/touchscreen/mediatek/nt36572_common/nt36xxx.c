@@ -39,6 +39,81 @@
 #include <linux/jiffies.h>
 #endif /* #if NVT_TOUCH_ESD_PROTECT */
 
+// Add after the includes section (around line 30)
+#include <linux/gpio.h>
+#include <linux/of_gpio.h>
+
+// Add new structure for GPIO fallback
+static struct {
+    int rst_gpio;
+    int irq_gpio;
+    bool use_gpio_fallback;
+} nvt_gpio_data = {
+    . rst_gpio = -1,
+    . irq_gpio = -1,
+    .use_gpio_fallback = false,
+};
+
+// Add GPIO fallback initialization function
+static int nvt_gpio_fallback_init(struct i2c_client *client)
+{
+    struct device_node *np = client->dev. of_node;
+    int ret;
+
+    /* Try to get reset GPIO */
+    nvt_gpio_data.rst_gpio = of_get_named_gpio(np, "novatek,reset-gpio", 0);
+    if (!gpio_is_valid(nvt_gpio_data.rst_gpio)) {
+        /* Try alternate property names */
+        nvt_gpio_data. rst_gpio = of_get_named_gpio(np, "reset-gpios", 0);
+    }
+    if (!gpio_is_valid(nvt_gpio_data. rst_gpio)) {
+        nvt_gpio_data.rst_gpio = of_get_named_gpio(np, "rst-gpio", 0);
+    }
+
+    /* Try to get IRQ GPIO */
+    nvt_gpio_data.irq_gpio = of_get_named_gpio(np, "novatek,irq-gpio", 0);
+    if (!gpio_is_valid(nvt_gpio_data.irq_gpio)) {
+        nvt_gpio_data.irq_gpio = of_get_named_gpio(np, "int-gpios", 0);
+    }
+
+    if (gpio_is_valid(nvt_gpio_data.rst_gpio)) {
+        ret = gpio_request(nvt_gpio_data.rst_gpio, "nvt_rst");
+        if (ret < 0) {
+            NVT_ERR("Failed to request reset GPIO: %d\n", ret);
+            nvt_gpio_data.rst_gpio = -1;
+        } else {
+            gpio_direction_output(nvt_gpio_data. rst_gpio, 1);
+            nvt_gpio_data.use_gpio_fallback = true;
+            NVT_LOG("Using GPIO fallback for reset:  GPIO %d\n", 
+                    nvt_gpio_data.rst_gpio);
+        }
+    }
+
+    if (gpio_is_valid(nvt_gpio_data.irq_gpio)) {
+        ret = gpio_request(nvt_gpio_data. irq_gpio, "nvt_irq");
+        if (ret < 0) {
+            NVT_ERR("Failed to request IRQ GPIO: %d\n", ret);
+            nvt_gpio_data.irq_gpio = -1;
+        } else {
+            gpio_direction_input(nvt_gpio_data.irq_gpio);
+            NVT_LOG("Using GPIO fallback for IRQ: GPIO %d\n", 
+                    nvt_gpio_data. irq_gpio);
+        }
+    }
+
+    return nvt_gpio_data.use_gpio_fallback ?  0 : -ENODEV;
+}
+
+// Add GPIO control wrapper function
+static void nvt_gpio_set_reset(int level)
+{
+    if (nvt_gpio_data.use_gpio_fallback && gpio_is_valid(nvt_gpio_data.rst_gpio)) {
+        gpio_set_value(nvt_gpio_data.rst_gpio, level);
+    } else {
+        NVT_GPIO_OUTPUT(GTP_RST_PORT, level);
+    }
+}
+
 #if NVT_TOUCH_ESD_PROTECT
 static struct delayed_work nvt_esd_check_work;
 static struct workqueue_struct *nvt_esd_check_wq;
