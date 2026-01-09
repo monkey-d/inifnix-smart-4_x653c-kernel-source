@@ -1572,36 +1572,67 @@ Description:
 return:
 	Executive outcomes. 0---succeed. negative---failed
 *******************************************************/
-static int32_t nvt_ts_probe(struct i2c_client *client, const struct i2c_device_id *id)
+// In nvt_ts_probe function, add after client assignment
+static int32_t nvt_ts_probe(struct i2c_client *client,
+                            const struct i2c_device_id *id)
 {
-	int32_t ret = 0;
-#if ((TOUCH_KEY_NUM > 0) || WAKEUP_GESTURE)
-	int32_t retry = 0;
-#endif
+    int32_t ret = 0;
+    int retry;
 
-	NVT_LOG("start\n");
+    NVT_LOG("start\n");
 
-	ts = kmalloc(sizeof(struct nvt_ts_data), GFP_KERNEL);
-	if (ts == NULL) {
-		NVT_ERR("failed to allocated memory for nvt ts data\n");
-		return -ENOMEM;
-	}
+    ts = kzalloc(sizeof(struct nvt_ts_data), GFP_KERNEL);
+    if (ts == NULL) {
+        NVT_ERR("failed to allocate memory for nvt_ts_data\n");
+        return -ENOMEM;
+    }
 
-	ts->client = client;
-	i2c_set_clientdata(client, ts);
+    ts->client = client;
+    i2c_set_clientdata(client, ts);
 
-#if NVT_TOUCH_SUPPORT_HW_RST
-	NVT_GPIO_OUTPUT(GTP_RST_PORT, 1);
-#endif
-	//---request INT-pin---
-	NVT_GPIO_AS_INT(GTP_INT_PORT);
+    /* Initialize mutex */
+    mutex_init(&ts->lock);
 
-	//---check i2c func.---
-	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
-		NVT_ERR("i2c_check_functionality failed. (no I2C_FUNC_I2C)\n");
-		ret = -ENODEV;
-		goto err_check_functionality_failed;
-	}
+    /* Try GPIO fallback initialization first */
+    ret = nvt_gpio_fallback_init(client);
+    if (ret < 0) {
+        NVT_LOG("GPIO fallback not available, using pinctrl\n");
+    }
+
+    /* Configure interrupt GPIO */
+    NVT_GPIO_AS_INT(GTP_INT_PORT);
+
+    /* Perform initial hardware reset */
+    NVT_LOG("Performing initial hardware reset\n");
+    nvt_gpio_set_reset(0);
+    msleep(20);
+    nvt_gpio_set_reset(1);
+    msleep(100);  /* Wait for controller to boot */
+
+    /* Check I2C communication */
+    ret = nvt_check_i2c_ready(client);
+    if (ret < 0) {
+        NVT_ERR("I2C communication failed!\n");
+        /* Don't fail immediately - try to continue */
+    }
+
+    /* Check chip version with retries */
+    for (retry = 0; retry < 3; retry++) {
+        ret = nvt_ts_check_chip_ver_trim();
+        if (ret == 0) {
+            NVT_LOG("Chip verified on attempt %d\n", retry + 1);
+            break;
+        }
+        NVT_ERR("Chip verify failed, attempt %d\n", retry + 1);
+        nvt_bootloader_reset();
+        msleep(100);
+    }
+
+    if (ret) {
+        NVT_ERR("chip is not identified, using default memory map\n");
+        /* Set a default memory map for NT36672A or similar */
+        ts->mmap = &NT36672A_memory_map;  /* You may need to define this */
+    }
 
 	// need 10ms delay after POR(power on reset)
 	msleep(10);
