@@ -766,7 +766,7 @@ Description:
 
 return:
 	Executive outcomes. 0---success. -1---fail.
-*****
+*****/
 
 // Replace the existing nvt_get_fw_info function
 int32_t nvt_get_fw_info(void)
