@@ -766,61 +766,86 @@ Description:
 
 return:
 	Executive outcomes. 0---success. -1---fail.
-*******************************************************/
+*****
+
+// Replace the existing nvt_get_fw_info function
 int32_t nvt_get_fw_info(void)
 {
-	uint8_t buf[64] = {0};
-	uint32_t retry_count = 0;
-	int32_t ret = 0;
+    uint8_t buf[64] = {0};
+    uint32_t retry_count = 0;
+    int32_t ret = 0;
 
-info_retry:
-	//---set xdata index to EVENT BUF ADDR---
-	buf[0] = 0xFF;
-	buf[1] = (ts->mmap->EVENT_BUF_ADDR >> 16) & 0xFF;
-	buf[2] = (ts->mmap->EVENT_BUF_ADDR >> 8) & 0xFF;
-	CTP_I2C_WRITE(ts->client, I2C_FW_Address, buf, 3);
+    for (retry_count = 0; retry_count < 5; retry_count++) {
+        //---set xdata index to EVENT BUF ADDR---
+        buf[0] = 0xFF;
+        buf[1] = (ts->mmap->EVENT_BUF_ADDR >> 16) & 0xFF;
+        buf[2] = (ts->mmap->EVENT_BUF_ADDR >> 8) & 0xFF;
+        ret = CTP_I2C_WRITE(ts->client, I2C_FW_Address, buf, 3);
+        if (ret < 0) {
+            NVT_ERR("Set xdata index failed, retry %d\n", retry_count);
+            msleep(20);
+            continue;
+        }
 
-	//---read fw info---
-	buf[0] = EVENT_MAP_FWINFO;
-	CTP_I2C_READ(ts->client, I2C_FW_Address, buf, 17);
-	ts->fw_ver = buf[1];
-	ts->x_num = buf[3];
-	ts->y_num = buf[4];
-	ts->abs_x_max = (uint16_t)((buf[5] << 8) | buf[6]);
-	ts->abs_y_max = (uint16_t)((buf[7] << 8) | buf[8]);
-	ts->max_button_num = buf[11];
+        //---read fw info---
+        buf[0] = EVENT_MAP_FWINFO;
+        ret = CTP_I2C_READ(ts->client, I2C_FW_Address, buf, 17);
+        if (ret < 0) {
+            NVT_ERR("Read fw info failed, retry %d\n", retry_count);
+            msleep(20);
+            continue;
+        }
 
-	//---clear x_num, y_num if fw info is broken---
-	if ((buf[1] + buf[2]) != 0xFF) {
-		NVT_ERR("FW info is broken! fw_ver=0x%02X, ~fw_ver=0x%02X\n", buf[1], buf[2]);
-		ts->fw_ver = 0;
-		ts->x_num = 18;
-		ts->y_num = 32;
-		ts->abs_x_max = TOUCH_DEFAULT_MAX_WIDTH;
-		ts->abs_y_max = TOUCH_DEFAULT_MAX_HEIGHT;
-		ts->max_button_num = TOUCH_KEY_NUM;
+        ts->fw_ver = buf[1];
+        ts->x_num = buf[3];
+        ts->y_num = buf[4];
+        ts->abs_x_max = (uint16_t)((buf[5] << 8) | buf[6]);
+        ts->abs_y_max = (uint16_t)((buf[7] << 8) | buf[8]);
+        ts->max_button_num = buf[11];
 
-		if(retry_count < 3) {
-			retry_count++;
-			NVT_ERR("retry_count=%d\n", retry_count);
-			goto info_retry;
-		} else {
-			NVT_ERR("Set default fw_ver=%d, x_num=%d, y_num=%d, \
-					abs_x_max=%d, abs_y_max=%d, max_button_num=%d!\n",
-					ts->fw_ver, ts->x_num, ts->y_num,
-					ts->abs_x_max, ts->abs_y_max, ts->max_button_num);
-			ret = -1;
-		}
-	} else {
-		ret = 0;
-	}
+        /* Validate firmware info */
+        if ((buf[1] + buf[2]) != 0xFF) {
+            NVT_ERR("FW info checksum error!  fw_ver=0x%02X, ~fw_ver=0x%02X, retry %d\n",
+                    buf[1], buf[2], retry_count);
+            
+            /* Try reset before next retry */
+            if (retry_count < 4) {
+                nvt_bootloader_reset();
+                msleep(50);
+            }
+            continue;
+        }
 
-	//---Get Novatek PID---
-	nvt_read_pid();
+        /* Validate x_num and y_num are reasonable */
+        if (ts->x_num == 0 || ts->x_num > 40 || 
+            ts->y_num == 0 || ts->y_num > 40) {
+            NVT_ERR("Invalid x_num=%d, y_num=%d, retry %d\n",
+                    ts->x_num, ts->y_num, retry_count);
+            if (retry_count < 4) {
+                nvt_bootloader_reset();
+                msleep(50);
+            }
+            continue;
+        }
 
-	return ret;
+        NVT_LOG("fw_ver=0x%02X, x_num=%d, y_num=%d, abs_x_max=%d, abs_y_max=%d, max_button_num=%d\n",
+                ts->fw_ver, ts->x_num, ts->y_num,
+                ts->abs_x_max, ts->abs_y_max, ts->max_button_num);
+        
+        return 0;
+    }
+
+    /* Use default values if all retries failed */
+    NVT_ERR("Failed to get FW info after %d retries, using defaults\n", retry_count);
+    ts->fw_ver = 0;
+    ts->x_num = 18;  /* Default for NT36xxx */
+    ts->y_num = 32;
+    ts->abs_x_max = TOUCH_DEFAULT_MAX_WIDTH;
+    ts->abs_y_max = TOUCH_DEFAULT_MAX_HEIGHT;
+    ts->max_button_num = TOUCH_KEY_NUM;
+
+    return -EAGAIN;
 }
-
 /*******************************************************
   Create Device Node (Proc Entry)
 *******************************************************/
