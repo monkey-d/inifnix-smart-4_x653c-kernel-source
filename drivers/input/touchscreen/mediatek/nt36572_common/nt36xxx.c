@@ -1833,7 +1833,6 @@ err_input_register_device_failed:
 	if (tpd->dev == NULL)
 		input_free_device(ts->input_dev);
 err_input_dev_alloc_failed:
-err_check_functionality_failed:
 	i2c_set_clientdata(client, NULL);
 	kfree(ts);
 	return ret;
