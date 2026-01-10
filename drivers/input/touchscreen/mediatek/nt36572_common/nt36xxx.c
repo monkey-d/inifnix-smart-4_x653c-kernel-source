@@ -578,7 +578,7 @@ void nvt_bootloader_reset(void)
 }
 
 // Add robust I2C communication check
-static int nvt_check_i2c_ready(struct i2c_client *client)
+ int nvt_check_i2c_ready(struct i2c_client *client)
 {
     uint8_t buf[8] = {0};
     int ret;
